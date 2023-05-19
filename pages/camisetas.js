@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import NavBar from '../components/navbar';
-import Camiseta from '../components/camiseta';
+import ConjuntoCamisetas from '../components/conjuntoCamisetas';
 import { getCamisetas } from "../data/api";
 
 
@@ -12,11 +12,7 @@ export default function Index({camisetas}) {
                 <link rel="icon" href="https://i.ibb.co/7WBsHrf/Logo.png" />
             </Head>
             <NavBar/>
-            {camisetas.map(camiseta => <Camiseta 
-                                        descripcion={camiseta.descripcion} 
-                                        precio={camiseta.precio} 
-                                        imagen={camiseta.imagen}
-                                        />)}
+            <ConjuntoCamisetas camisetas={camisetas} />
         </div>
     );
   }
