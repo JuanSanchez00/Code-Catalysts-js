@@ -2,7 +2,7 @@ import Head from 'next/head';
 import NavBar from '../components/navbar';
 import ConjuntoCamisetas from '../components/conjuntoCamisetas';
 import { getCamisetas } from "../data/api";
-
+import Footer from '../components/footer';
 
 export default function Index({camisetas}) {
     return (
@@ -13,6 +13,7 @@ export default function Index({camisetas}) {
             </Head>
             <NavBar/>
             <ConjuntoCamisetas camisetas={camisetas} />
+            <Footer />
         </div>
     );
   }
