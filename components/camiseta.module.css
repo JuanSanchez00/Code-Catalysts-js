@@ -1,0 +1,25 @@
+.contenedor {
+    float:left; 
+    border: 1px solid rgba(0,0,0,0.21);
+    border-radius: 11px 11px 11px 11px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    height: 225px;
+}
+
+.contenedor:hover {
+    -webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.97); 
+box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.97);
+}
+
+.descripcion {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.precio {
+    font-weight: bold;
+    float: bottom;
+}
