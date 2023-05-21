@@ -21,11 +21,9 @@ const Carousel = () => {
       </div>
       <a className="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="sr-only">Anterior</span>
       </a>
       <a className="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="sr-only">Siguiente</span>
       </a>
     </div>
   );

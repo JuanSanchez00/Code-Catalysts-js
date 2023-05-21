@@ -6,12 +6,14 @@ const ConjuntoCamisetas = ({ camisetas }) => {
     <div className="d-flex justify-content-center align-items-center">
       <div>
         {camisetas.map((camiseta) => (
-          <Camiseta
-            key={camiseta.id}
-            descripcion={camiseta.descripcion}
-            precio={camiseta.precio}
-            imagen={camiseta.imagen}
-          />
+          <a href={"/camiseta/"+camiseta.id_camiseta}>
+            <Camiseta
+              key={camiseta.id}
+              descripcion={camiseta.descripcion}
+              precio={camiseta.precio}
+              imagen={camiseta.imagen}
+            />
+          </a>
         ))}
       </div>
     </div>
