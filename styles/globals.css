@@ -10,3 +10,23 @@ a {
 a:hover {
   color: black;
 }
+
+.camisetas {
+  display:inline-block;
+}
+
+.titulo {
+  margin: 10px;
+}
+
+.items {
+  text-decoration: none;
+}
+
+.contenedorFiltrar {
+  float: left;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-radius: 11px 11px 11px 11px;
+}

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './camiseta.module.css';
 
 export default function Camiseta(props) {
@@ -11,7 +10,7 @@ export default function Camiseta(props) {
     let estado = props.estado;
     return (
         <div className={styles.contenedor}>  
-            <Image
+            <img                
                 src={imagen}
                 width={100}
                 height={100}

@@ -4,6 +4,7 @@ import ConjuntoCamisetas from '../components/conjuntoCamisetas';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import Footer from '../components/footer';
+import FiltrarPorLigas from '../components/filtrarPorLigas';
 
 export default function Index(props) {
     return (
@@ -13,10 +14,8 @@ export default function Index(props) {
                 <link rel="icon" href="https://i.ibb.co/7WBsHrf/Logo.png" />
             </Head>
             <NavBar/>
-            <h4>Filtrar por ligas</h4>
-            {props.ligas.map((liga) => (
-                <a href={"/camisetas/liga/"+liga.id_liga}><p> {liga.nombre} </p></a>
-              ))}
+            <h1 className="titulo">Todas las camisetas</h1>
+            <FiltrarPorLigas ligas={props.ligas} />
             <ConjuntoCamisetas camisetas={props.camisetas} />
             <Footer />
         </div>
