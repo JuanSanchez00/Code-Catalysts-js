@@ -48,6 +48,13 @@ export async function getLigaPorID(id) {
   return liga;
 }
 
+export async function getEquipoPorID(id) {
+  const equipo = await fetch(
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/equipo/${id}`
+  ).then((response) => response.json());
+  return equipo;
+}
+
 export async function registrarPedido() {
   const carrito = localStorage.getItem('carrito');
   const json = '{ "id_cliente": 1, "camisetas": ['+carrito+']}';
