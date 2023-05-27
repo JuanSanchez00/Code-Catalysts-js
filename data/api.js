@@ -12,35 +12,41 @@ export async function getLigas() {
   return ligas;
 }
 
-export async function getEquiposPorLiga($id) {
+export async function getEquiposPorLiga(id) {
   const ligas = await fetch(
-    'https://garcia-sanchez-laravel-genaro08.vercel.app/rest/equipos/liga/1'//aca hay que poner el id
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/equipos/liga/${id}`
   ).then((response) => response.json());
   return ligas;
 }
 
-export async function getCamisetasPorLiga($id) {
+export async function getCamisetasPorLiga(id) {
   const ligas = await fetch(
-    'https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camisetas/liga/1'//aca hay que poner el di
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camisetas/liga/${id}`
   ).then((response) => response.json());
   return ligas;
 }
 
-export async function getCamisetasPorEquipo($id) {
+export async function getCamisetasPorEquipo(id) {
   const ligas = await fetch(
-    'https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camisetas/equipo/1'//aca hay que poner el di
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camisetas/equipo/${id}`
   ).then((response) => response.json());
   return ligas;
 }
 
 
-export async function getCamisetaPorID($id) {
+export async function getCamisetaPorID(id) {
   const ligas = await fetch(
-    'https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camiseta/5'//aca hay que poner el id
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camiseta/${id}`
   ).then((response) => response.json());
   return ligas;
 }
 
+export async function getLigaPorID(id) {
+  const liga = await fetch(
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/liga/${id}`
+  ).then((response) => response.json());
+  return liga;
+}
 
 export async function registrarPedido() {
   const carrito = localStorage.getItem('carrito');
