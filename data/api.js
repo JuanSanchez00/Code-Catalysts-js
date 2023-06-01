@@ -57,14 +57,13 @@ export async function getEquipoPorID(id) {
 
 export async function registrarPedido() {
   const carrito = localStorage.getItem('carrito');
-  const json = '{ "id_cliente": 1, "camisetas": ['+carrito+']}';
-  console.log(json);
-  fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedido', {
+  const json = '{ "id_cliente": 7, "camisetas": ['+carrito+']}';
+  fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedido`, {
       method: 'POST', 
-      mode: 'no-cors', 
+      mode: 'cors', 
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify(json), // body data type must match "Content-Type" header
+      body: json, // body data type must match "Content-Type" header
     })
 }
