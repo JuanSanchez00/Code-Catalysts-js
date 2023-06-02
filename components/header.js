@@ -39,19 +39,26 @@ export default function Header ({
             setVisibilidadMailCliente('block');
         }
         else {
-            allProducts.forEach((producto, index) => {
-                if (index === 0) {
-                    json = '{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                } 
-                else {
-                    json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                }
-            });
-            registrarPedido(json,mailCliente);
-            setVisibilidadMailCliente('none');
-            setMailCliente('');
-            vaciarCarrito();
-            alert("Su compra se ha realizado con éxito.")
+            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+            const isValidEmail = emailRegex.test(mailCliente);
+            if (isValidEmail) {
+                allProducts.forEach((producto, index) => {
+                    if (index === 0) {
+                        json = '{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
+                    } 
+                    else {
+                        json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
+                    }
+                });
+                registrarPedido(json,mailCliente);
+                setVisibilidadMailCliente('none');
+                setMailCliente('');
+                vaciarCarrito();
+                alert("Su compra se ha realizado con éxito.");
+            }
+            else {
+                alert("Debe ingresar un email válido");
+            }
         }
 	};
 
