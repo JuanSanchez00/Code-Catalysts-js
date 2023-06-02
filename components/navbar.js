@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import { useState } from "react";
 import { getCamisetas } from "../data/api";
 
-export default function NavBar({setVisibilidadFiltrarLiga,setVisibilidadFiltrarEquipo,setVisibilidadCarrusel,setVisibilidadCamisetas,setCamisetasVisibles,setVisibilidadTitulo,setTitulo,setVisibilidadCamisetaActual}) {
+export default function NavBar({setVisibilidadFiltrarLiga,setVisibilidadFiltrarEquipo,setVisibilidadCarrusel,setVisibilidadCamisetas,setCamisetasVisibles,setVisibilidadTitulo,setTitulo,setVisibilidadCamisetaActual,setVisibilidadCarrito,todasLasCamisetas}) {
   
+
   async function handleClickCamisetas(){
-    setCamisetasVisibles(await getCamisetas());
+    setCamisetasVisibles(todasLasCamisetas);
     setVisibilidadFiltrarLiga("block");
     setVisibilidadFiltrarEquipo("none");
     setVisibilidadCarrusel("none"); 
@@ -12,6 +14,7 @@ export default function NavBar({setVisibilidadFiltrarLiga,setVisibilidadFiltrarE
     setVisibilidadTitulo("block");
     setVisibilidadCamisetaActual("none")
     setTitulo("Todas las camisetas");
+    setVisibilidadCarrito("block");
   };
 
   const handleClickInicio = () => {
@@ -20,7 +23,8 @@ export default function NavBar({setVisibilidadFiltrarLiga,setVisibilidadFiltrarE
     setVisibilidadCarrusel("block"); 
     setVisibilidadCamisetas("none");
     setVisibilidadTitulo("none");
-    setVisibilidadCamisetaActual("none")
+    setVisibilidadCamisetaActual("none");
+    setVisibilidadCarrito("none");
   };
   
 

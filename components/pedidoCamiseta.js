@@ -4,8 +4,17 @@ import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {FormGroup, Label, Input} from 'reactstrap';
 
-export default function Camiseta({camiseta}) {
+
+export default function Camiseta({camiseta,titulo,setVisibilidadTitulo,allProducts,
+	setAllProducts,
+	total,
+	countProducts,
+	setCountProducts,
+	setTotal,
+    }) {
     let id,imagen,descripcion,precio,talles; 
+
+    const [key, setKey] = useState(0);
     
     if(camiseta != null){
         id = camiseta.id_camiseta;
@@ -14,27 +23,30 @@ export default function Camiseta({camiseta}) {
         precio = camiseta.precio;
         talles = camiseta.talles.split(' ');
     }
-    const[talle, setTalle] = useState('S');
+    const[talle, setTalle] = useState(null);
     const cambioTalle=e=>{
         setTalle(e.target.value);
       }
 
-    function handleClick() {
-        //if (typeof window !== 'undefined') {
-          if (localStorage.getItem('carrito') == null || localStorage.getItem('carrito') == "") {
-              localStorage.setItem('carrito','{"id_camiseta": '+id+',"talle": "'+talle+'"}');
-          }
-          else {
-            localStorage.setItem('carrito',localStorage.getItem('carrito')+',{"id_camiseta": '+id+',"talle": "'+talle+'"}');
-          }
-       // }
-        alert("La camisera "+descripcion+" con talle "+talle+" se ha agregado al carrito.")
-      };
-
-      function finalizarCompra() {
-        registrarPedido();
-      };
-
+    function agregarAlCarrito() {
+        if (talle == null) {
+            alert("Por favor seleccione un talle de la camiseta.");
+        }
+        else {
+            console.log("key: "+key);
+            let producto = {
+                key: key,
+                //key: countProducts,
+                id: id,
+                descripcion: descripcion,
+                talle: talle
+            };
+            setKey(key + 1);
+            //console.log("key: "+key);
+            setAllProducts([...allProducts,producto]);
+            setCountProducts(countProducts + 1);
+        }
+    };
 
     if(camiseta !== null){
         return (
@@ -73,15 +85,10 @@ export default function Camiseta({camiseta}) {
                         </FormGroup>
                     </FormGroup>
                     <button 
-                        onClick={() => handleClick()}
+                        onClick={() => agregarAlCarrito()}
                         className={styles.boton}
                     >
                         Agregar al carrito
-                    </button>
-                    <button 
-                        onClick={() => finalizarCompra()}
-                        className={styles.boton}>
-                        Finalizar compra
                     </button>
                 </div>
             </div>

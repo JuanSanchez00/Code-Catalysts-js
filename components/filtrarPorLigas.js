@@ -12,8 +12,6 @@ export default function FiltrarPorLigas({ligas , setVisibilidadFiltrarLiga, setC
     setEquiposVisibles(equipos);
     setTitulo("Camisetas de "+liga.nombre);
   }
-  
-  //onClick={handleClickLigas(liga.id_liga)}
 
   return (
       <div className="contenedorFiltrar">

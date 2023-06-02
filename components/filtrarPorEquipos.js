@@ -11,7 +11,6 @@ export default function Index({ equipos, setCamisetasVisibles, setVisibilidadFil
 
   return (
     <div>
-      <h1>  </h1>
       <div className="contenedorFiltrar">
         <h4>Filtrar por equipos</h4>
         {equipos !== null &&
