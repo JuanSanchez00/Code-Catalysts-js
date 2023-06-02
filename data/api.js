@@ -56,10 +56,7 @@ export async function getEquipoPorID(id) {
 }
 
 export async function registrarPedido(camisetas, email) {
-  /*const carrito = localStorage.getItem('carrito');
-  const json = '{ "id_cliente": 7, "camisetas": ['+carrito+']}';*/
   const json = '{ "email": "'+email+'", "camisetas": ['+camisetas+']}';
-  console.log(json);
   fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedido`, {
       method: 'POST', 
       mode: 'cors', 

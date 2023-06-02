@@ -1,6 +1,11 @@
 import { getCamisetasPorEquipo} from "../data/api";
 
-export default function Index({ equipos, setCamisetasVisibles, setVisibilidadFiltrarEquipo, setTitulo}) {
+export default function Index({
+  equipos, 
+  setCamisetasVisibles, 
+  setVisibilidadFiltrarEquipo, 
+  setTitulo
+}) {
   
   async function handleClickEquipos (equipo){
     let camisetas = await getCamisetasPorEquipo(equipo.id_equipo);

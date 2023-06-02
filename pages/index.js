@@ -12,10 +12,12 @@ import { getLigas } from "../data/api";
 import { useState } from "react";
 
 export default function FirstPost({camisetas,ligas}) {
-    const [allProducts, setAllProducts] = useState([]);//producto en el carrito
-    const [total, setTotal] = useState(0);
+    const [allProducts, setAllProducts] = useState([]);
 	const [countProducts, setCountProducts] = useState(0);
-    const [key, setKey] = useState(0);
+    const [camisetaActual, setCamisetaActual] = useState(null);
+    const [camisetasVisibles, setCamisetasVisibles] = useState(camisetas);
+    const [equiposVisibles, setEquiposVisibles] = useState(null);
+    const [titulo, setTitulo] = useState("Todas las camisetas");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
     const [visibilidadTitulo, setVisibilidadTitulo] = useState("none");
@@ -24,13 +26,6 @@ export default function FirstPost({camisetas,ligas}) {
     const [visibilidadCamisetas, setVisibilidadCamisetas] = useState("none");
     const [visibilidadCamisetaActual, setVisibilidadCamisetaActual] = useState("none");
     const [visibilidadCarrito, setVisibilidadCarrito] = useState("none");
-
-    const [camisetaActual, setCamisetaActual] = useState(null);
-    const [camisetasVisibles, setCamisetasVisibles] = useState(camisetas);
-    const [equiposVisibles, setEquiposVisibles] = useState(null);
-    const [titulo, setTitulo] = useState("Todas las camisetas");
-
-    
 
     return (
         <div>
@@ -53,8 +48,6 @@ export default function FirstPost({camisetas,ligas}) {
                 <Header 
                     allProducts={allProducts}
                     setAllProducts={setAllProducts}
-                    total={total}
-                    setTotal={setTotal}
                     countProducts={countProducts}
                     setCountProducts={setCountProducts}
                     titulo={titulo}
@@ -86,23 +79,17 @@ export default function FirstPost({camisetas,ligas}) {
                     setVisibilidadCamisetas={setVisibilidadCamisetas}
                     setVisibilidadFiltrarEquipo = {setVisibilidadFiltrarEquipo} 
                     setVisibilidadFiltrarLiga = {setVisibilidadFiltrarLiga}
-                    setVisibilidadTitulo={setVisibilidadTitulo}
                     setVisibilidadCamisetaActual={setVisibilidadCamisetaActual}
                     setTitulo={setTitulo} />
             </div>
             <div style={{ display: visibilidadCamisetaActual }}>
                 <Camiseta 
-                    titulo={titulo}
-                    visibilidadTitulo={visibilidadTitulo}
                     camiseta={camisetaActual}
                     allProducts={allProducts}
                     setAllProducts={setAllProducts}
-                    total={total}
-                    setTotal={setTotal}
                     countProducts={countProducts}
                     setCountProducts={setCountProducts}
-                    setKey={setKey}
-                    key={key} />
+                />
             </div>
             <Footer/>
         </div>

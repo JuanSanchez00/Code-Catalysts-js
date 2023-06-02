@@ -1,17 +1,17 @@
 import styles from './pedidoCamiseta.module.css';
-import { registrarPedido } from "../data/api";
 import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {FormGroup, Label, Input} from 'reactstrap';
 
 
-export default function Camiseta({camiseta,titulo,setVisibilidadTitulo,allProducts,
+export default function Camiseta({
+    camiseta,
+    allProducts,
 	setAllProducts,
-	total,
 	countProducts,
 	setCountProducts,
-	setTotal,
-    }) {
+}) {
+
     let id,imagen,descripcion,precio,talles; 
 
     const [key, setKey] = useState(0);
@@ -26,39 +26,35 @@ export default function Camiseta({camiseta,titulo,setVisibilidadTitulo,allProduc
     const[talle, setTalle] = useState(null);
     const cambioTalle=e=>{
         setTalle(e.target.value);
-      }
+    }
 
     function agregarAlCarrito() {
         if (talle == null) {
             alert("Por favor seleccione un talle de la camiseta.");
         }
         else {
-            console.log("key: "+key);
             let producto = {
                 key: key,
-                //key: countProducts,
                 id: id,
                 descripcion: descripcion,
                 talle: talle
             };
             setKey(key + 1);
-            //console.log("key: "+key);
             setAllProducts([...allProducts,producto]);
             setCountProducts(countProducts + 1);
+            setTalle(null);
         }
     };
 
     if(camiseta !== null){
         return (
             <div className={styles.contenedorPrincipal}>
-                
-                    <img
-                        className={styles.imagen}
-                        src={imagen}
-                        width={400}
-                        height={400}
-                    />
-            
+                <img
+                    className={styles.imagen}
+                    src={imagen}
+                    width={400}
+                    height={400}
+                />
                 <div className={styles.contenedorSecundario}>
                     <h2 className={styles.descripcion}>{descripcion}</h2>
                     <h2 className={styles.precio}>${precio}</h2>

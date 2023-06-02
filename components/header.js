@@ -4,10 +4,8 @@ import { registrarPedido } from "../data/api";
 export default function Header ({
 	allProducts,
 	setAllProducts,
-	total,
 	countProducts,
 	setCountProducts,
-	setTotal,
     titulo,
     visibilidadTitulo,
 }) {
@@ -29,7 +27,6 @@ export default function Header ({
 
     const vaciarCarrito = () => {
 		setAllProducts([]);
-		setTotal(0);
 		setCountProducts(0);
         setVisibilidadMailCliente("none");
 	};
@@ -100,7 +97,7 @@ export default function Header ({
                                 {allProducts.map(product => (
                                     <div className='cart-product' key={product.id}>
                                         <div className='info-cart-product'>
-                                            <span className='cantidad-producto-carrito'>
+                                            <span className='titulo-producto-carrito'>
                                                 {product.descripcion}
                                             </span>
                                             <p className='titulo-producto-carrito'>

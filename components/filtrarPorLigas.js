@@ -1,7 +1,14 @@
 import { getCamisetasPorLiga } from "../data/api";
 import { getEquiposPorLiga } from "../data/api";
 
-export default function FiltrarPorLigas({ligas , setVisibilidadFiltrarLiga, setCamisetasVisibles, setVisibilidadFiltrarEquipo, setEquiposVisibles, setTitulo}) {
+export default function FiltrarPorLigas({
+  ligas, 
+  setVisibilidadFiltrarLiga, 
+  setCamisetasVisibles, 
+  setVisibilidadFiltrarEquipo, 
+  setEquiposVisibles, 
+  setTitulo
+}) {
 
   async function handleClickLigas (liga){
     let camisetas = await getCamisetasPorLiga(liga.id_liga);
@@ -14,27 +21,13 @@ export default function FiltrarPorLigas({ligas , setVisibilidadFiltrarLiga, setC
   }
 
   return (
-      <div className="contenedorFiltrar">
-        <h4>Filtrar por ligas</h4>
-        {ligas.map((liga) => (
-          <a className="items">
-            <p onClick={() => handleClickLigas(liga)}> {liga.nombre} </p>
-          </a>
-        ))}
-      </div>
-    );
-  }
-
-export async function getServerSideProps(context) {
-  const { id } = context.params; 
-  let equipos;
-  equipos = await getEquiposPorLiga(id);
-  let ligaActual;
-  ligaActual = await getLigaPorID(id);
-  return {
-    props: {
-      equipos,
-      ligaActual,
-    },
-  };
+    <div className="contenedorFiltrar">
+      <h4>Filtrar por ligas</h4>
+      {ligas.map((liga) => (
+        <a className="items">
+          <p onClick={() => handleClickLigas(liga)}> {liga.nombre} </p>
+        </a>
+      ))}
+    </div>
+  );
 }

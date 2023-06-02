@@ -1,8 +1,15 @@
 import React from 'react';
-import Camiseta from '../components/Camiseta';
-import Link from 'next/link';
+import Camiseta from '../components/camiseta';
 
-const ConjuntoCamisetas = ({ camisetas,setCamisetaActual,setVisibilidadCamisetas,setVisibilidadFiltrarEquipo,setVisibilidadFiltrarLiga,setVisibilidadCamisetaActual,setTitulo}) => {
+const ConjuntoCamisetas = ({
+    camisetas,
+    setCamisetaActual,
+    setVisibilidadCamisetas,
+    setVisibilidadFiltrarEquipo,
+    setVisibilidadFiltrarLiga,
+    setVisibilidadCamisetaActual,
+    setTitulo
+}) => {
   
   async function handleClickCambiarCamiseta (camiseta){
     setVisibilidadCamisetas("none");
@@ -12,21 +19,26 @@ const ConjuntoCamisetas = ({ camisetas,setCamisetaActual,setVisibilidadCamisetas
     setCamisetaActual(camiseta);
     setTitulo("Comprar camiseta");
   }
+  
   if (camisetas != null) {
     return (
       <div className="d-flex justify-content-center align-items-center">
         <div>
-          {camisetas.map((camiseta) => (
+          {camisetas.length === 0 ? (
+            <p>No hay camisetas disponibles en este momento.</p>
+          ) : (
+            <div>
+              {camisetas.map((camiseta) => (
                 <a onClick={() => handleClickCambiarCamiseta(camiseta)} >
                   <Camiseta 
-                    id_camiseta={camiseta.id_camiseta}
                     descripcion={camiseta.descripcion}
                     precio={camiseta.precio}
                     imagen={camiseta.imagen}
-                    talles={camiseta.talles}
                   />
                 </a>
-          ))}
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
