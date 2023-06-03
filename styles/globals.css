@@ -87,6 +87,7 @@ header {
 
 .container-icon {
 	position: relative;
+	margin-right: 10px;
 }
 
 .count-products {

@@ -23,3 +23,21 @@
     font-weight: bold;
     float: bottom;
 }
+
+@media screen and (max-width: 462px) {
+	.contenedor {
+		width: 175px;
+	}
+  }
+
+  @media screen and (max-width: 407px) {
+	.contenedor {
+		width: 150px;
+	}
+  }
+
+  @media screen and (max-width: 357px) {
+	.contenedor {
+		width: 200px;
+	}
+  }
