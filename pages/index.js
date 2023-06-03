@@ -44,52 +44,54 @@ export default function FirstPost({camisetas,ligas}) {
                 setTitulo={setTitulo}
                 setVisibilidadCarrito={setVisibilidadCarrito}
                 todasLasCamisetas={camisetas} />
-             <div style={{ display: visibilidadCarrito}}>
-                <Header 
-                    allProducts={allProducts}
-                    setAllProducts={setAllProducts}
-                    countProducts={countProducts}
-                    setCountProducts={setCountProducts}
-                    titulo={titulo}
-                    visibilidadTitulo={visibilidadTitulo} />
-            </div>
-            <div style={{ display: visibilidadCarrusel}}>
-                <Carousel/>
-            </div>
-            <div style={{ display: visibilidadFiltrarLiga }}>
-                <FiltrarPorLigas 
-                    ligas={ligas} 
-                    setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga} 
-                    setCamisetasVisibles={setCamisetasVisibles} 
-                    setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
-                    setEquiposVisibles={setEquiposVisibles} 
-                    setTitulo={setTitulo} />
-            </div>
-            <div style={{ display: visibilidadFiltrarEquipo }}>
-                <FiltrarPorEquipos  
-                    equipos={equiposVisibles} 
-                    setCamisetasVisibles={setCamisetasVisibles} 
-                    setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
-                    setTitulo={setTitulo} />
-            </div>
-            <div style={{ display: visibilidadCamisetas }} >
-                <ConjuntoCamisetas 
-                    camisetas={camisetasVisibles}
-                    setCamisetaActual={setCamisetaActual} 
-                    setVisibilidadCamisetas={setVisibilidadCamisetas}
-                    setVisibilidadFiltrarEquipo = {setVisibilidadFiltrarEquipo} 
-                    setVisibilidadFiltrarLiga = {setVisibilidadFiltrarLiga}
-                    setVisibilidadCamisetaActual={setVisibilidadCamisetaActual}
-                    setTitulo={setTitulo} />
-            </div>
-            <div style={{ display: visibilidadCamisetaActual }}>
-                <Camiseta 
-                    camiseta={camisetaActual}
-                    allProducts={allProducts}
-                    setAllProducts={setAllProducts}
-                    countProducts={countProducts}
-                    setCountProducts={setCountProducts}
-                />
+            <div className='contenedorBody'>
+                <div style={{ display: visibilidadCarrito}}>
+                    <Header 
+                        allProducts={allProducts}
+                        setAllProducts={setAllProducts}
+                        countProducts={countProducts}
+                        setCountProducts={setCountProducts}
+                        titulo={titulo}
+                        visibilidadTitulo={visibilidadTitulo} />
+                </div>
+                    <div style={{ display: visibilidadCarrusel}}>
+                        <Carousel/>
+                    </div>
+                    <div style={{ display: visibilidadFiltrarLiga }}>
+                        <FiltrarPorLigas 
+                            ligas={ligas} 
+                            setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga} 
+                            setCamisetasVisibles={setCamisetasVisibles} 
+                            setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
+                            setEquiposVisibles={setEquiposVisibles} 
+                            setTitulo={setTitulo} />
+                    </div>
+                    <div style={{ display: visibilidadFiltrarEquipo }}>
+                        <FiltrarPorEquipos  
+                            equipos={equiposVisibles} 
+                            setCamisetasVisibles={setCamisetasVisibles} 
+                            setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
+                            setTitulo={setTitulo} />
+                    </div>
+                    <div style={{ display: visibilidadCamisetas }} >
+                        <ConjuntoCamisetas 
+                            camisetas={camisetasVisibles}
+                            setCamisetaActual={setCamisetaActual} 
+                            setVisibilidadCamisetas={setVisibilidadCamisetas}
+                            setVisibilidadFiltrarEquipo = {setVisibilidadFiltrarEquipo} 
+                            setVisibilidadFiltrarLiga = {setVisibilidadFiltrarLiga}
+                            setVisibilidadCamisetaActual={setVisibilidadCamisetaActual}
+                            setTitulo={setTitulo} />
+                    </div>
+                    <div style={{ display: visibilidadCamisetaActual }}>
+                        <Camiseta 
+                            camiseta={camisetaActual}
+                            allProducts={allProducts}
+                            setAllProducts={setAllProducts}
+                            countProducts={countProducts}
+                            setCountProducts={setCountProducts}
+                        />
+                </div>
             </div>
             <Footer/>
         </div>

@@ -1,3 +1,8 @@
+.contenedorBody {
+	flex-direction: column;
+	min-height: 80vh;
+  }  
+
 .navbar-logo {
   margin-left: 10px;
   margin-right: 10px;
