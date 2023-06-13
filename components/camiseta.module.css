@@ -1,0 +1,43 @@
+.contenedor {
+    float:left; 
+    border: 1px solid rgba(0,0,0,0.21);
+    border-radius: 11px 11px 11px 11px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    height: 225px;
+}
+
+.contenedor:hover {
+    transition-duration: 0.3s;
+    border: 1px solid black;
+}
+
+.descripcion {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.precio {
+    font-weight: bold;
+    float: bottom;
+}
+
+@media screen and (max-width: 462px) {
+	.contenedor {
+		width: 175px;
+	}
+  }
+
+  @media screen and (max-width: 407px) {
+	.contenedor {
+		width: 150px;
+	}
+  }
+
+  @media screen and (max-width: 357px) {
+	.contenedor {
+		width: 200px;
+	}
+  }
