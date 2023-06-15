@@ -8,7 +8,13 @@ const ConjuntoCamisetas = ({
     setVisibilidadFiltrarEquipo,
     setVisibilidadFiltrarLiga,
     setVisibilidadCamisetaActual,
-    setTitulo
+    setTitulo,
+    setVisibilidadAtrasLiga,
+    setVisibilidadAtrasEquipo,
+    setTituloLiga,
+    setTituloEquipo,
+    setIdLiga,
+    setIdEquipo
 }) => {
   
   async function handleClickCambiarCamiseta (camiseta){
@@ -18,6 +24,12 @@ const ConjuntoCamisetas = ({
     setVisibilidadCamisetaActual("block");
     setCamisetaActual(camiseta);
     setTitulo("Comprar camiseta");
+    setVisibilidadAtrasLiga("block")
+    setVisibilidadAtrasEquipo("block");
+    setTituloLiga(camiseta.liga);
+    setTituloEquipo(camiseta.equipo);
+    setIdLiga(camiseta.id_liga);
+    setIdEquipo(camiseta.id_equipo)
   }
   
   if (camisetas != null) {
@@ -34,6 +46,7 @@ const ConjuntoCamisetas = ({
                     descripcion={camiseta.descripcion}
                     precio={camiseta.precio}
                     imagen={camiseta.imagen}
+
                   />
                 </a>
               ))}

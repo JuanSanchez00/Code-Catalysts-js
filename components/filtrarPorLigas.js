@@ -7,7 +7,8 @@ export default function FiltrarPorLigas({
   setCamisetasVisibles, 
   setVisibilidadFiltrarEquipo, 
   setEquiposVisibles, 
-  setTitulo
+  setTitulo,
+  setIdLiga
 }) {
 
   async function handleClickLigas (liga){
@@ -17,6 +18,7 @@ export default function FiltrarPorLigas({
     setVisibilidadFiltrarLiga("none");
     setVisibilidadFiltrarEquipo("block");
     setEquiposVisibles(equipos);
+    setIdLiga(liga.id_liga);
     setTitulo("Camisetas de "+liga.nombre);
   }
 

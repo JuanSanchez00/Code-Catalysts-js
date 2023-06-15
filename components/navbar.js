@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState } from "react";
-import { getCamisetas } from "../data/api";
+import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga } from "../data/api";
 
 export default function NavBar({
   setVisibilidadFiltrarLiga,
@@ -12,7 +12,16 @@ export default function NavBar({
   setTitulo,
   setVisibilidadCamisetaActual,
   setVisibilidadCarrito,
-  todasLasCamisetas
+  todasLasCamisetas,
+  visibilidadAtrasLiga,
+  visibilidadAtrasEquipo,
+  setVisibilidadAtrasLiga,
+  setVisibilidadAtrasEquipo,
+  setEquiposVisibles,
+  tituloLiga,
+  tituloEquipo,
+  idLiga,
+  idEquipo
 }) {
 
   async function handleClickCamisetas(){
@@ -22,9 +31,43 @@ export default function NavBar({
     setVisibilidadCarrusel("none"); 
     setVisibilidadCamisetas("block");
     setVisibilidadTitulo("block");
-    setVisibilidadCamisetaActual("none")
+    setVisibilidadCamisetaActual("none");
     setTitulo("Todas las camisetas");
     setVisibilidadCarrito("block");
+    setVisibilidadAtrasLiga("none");
+    setVisibilidadAtrasEquipo("none");
+  };
+
+  async function handleClickLiga(){
+    setVisibilidadTitulo("none");
+    setVisibilidadCarrito("none");
+    setVisibilidadCamisetas("none");
+    setEquiposVisibles(await getEquiposPorLiga(idLiga));
+    setTitulo("Camisetas de " + tituloLiga);
+    setCamisetasVisibles(await getCamisetasPorLiga(idLiga));
+    setVisibilidadFiltrarLiga("none");
+    setVisibilidadFiltrarEquipo("block");
+    setVisibilidadCarrusel("none"); 
+    setVisibilidadCamisetas("block");
+    setVisibilidadTitulo("block");
+    setVisibilidadCamisetaActual("none")
+    setVisibilidadCarrito("block");
+    setVisibilidadAtrasLiga("none");
+    setVisibilidadAtrasEquipo("none");
+  };
+
+  async function handleClickEquipo(){
+    setCamisetasVisibles(await getCamisetasPorEquipo(idEquipo));
+    setVisibilidadFiltrarLiga("none");
+    setVisibilidadFiltrarEquipo("none");
+    setVisibilidadCarrusel("none"); 
+    setVisibilidadCamisetas("block");
+    setVisibilidadTitulo("block");
+    setVisibilidadCamisetaActual("none")
+    setTitulo("Camisetas de " + tituloEquipo);
+    setVisibilidadCarrito("block");
+    setVisibilidadAtrasLiga("block");
+    setVisibilidadAtrasEquipo("none");
   };
 
   const handleClickInicio = () => {
@@ -35,6 +78,8 @@ export default function NavBar({
     setVisibilidadTitulo("none");
     setVisibilidadCamisetaActual("none");
     setVisibilidadCarrito("none");
+    setVisibilidadAtrasLiga("none");
+    setVisibilidadAtrasEquipo("none");
   };
   
   return (
@@ -54,6 +99,12 @@ export default function NavBar({
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" onClick={handleClickCamisetas}> Camisetas </a>
+          </li>
+          <li class="nav-item active" style={{ display: visibilidadAtrasLiga }}>
+            <a class="nav-link" onClick={handleClickLiga}> {tituloLiga} </a>
+          </li>
+          <li class="nav-item active" style={{ display: visibilidadAtrasEquipo }}>
+            <a class="nav-link" onClick={handleClickEquipo}> {tituloEquipo} </a>
           </li>
         </ul>
       </div>

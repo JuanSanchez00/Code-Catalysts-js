@@ -13,11 +13,15 @@ import { useState } from "react";
 
 export default function FirstPost({camisetas,ligas}) {
     const [allProducts, setAllProducts] = useState([]);
-	const [countProducts, setCountProducts] = useState(0);
+	  const [countProducts, setCountProducts] = useState(0);
     const [camisetaActual, setCamisetaActual] = useState(null);
     const [camisetasVisibles, setCamisetasVisibles] = useState(camisetas);
     const [equiposVisibles, setEquiposVisibles] = useState(null);
     const [titulo, setTitulo] = useState("Todas las camisetas");
+    const [tituloLiga, setTituloLiga] = useState("");
+    const [tituloEquipo, setTituloEquipo] = useState("");
+    const [idLiga, setIdLiga] = useState("");
+    const [idEquipo, setIdEquipo] = useState("");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
     const [visibilidadTitulo, setVisibilidadTitulo] = useState("none");
@@ -26,6 +30,8 @@ export default function FirstPost({camisetas,ligas}) {
     const [visibilidadCamisetas, setVisibilidadCamisetas] = useState("none");
     const [visibilidadCamisetaActual, setVisibilidadCamisetaActual] = useState("none");
     const [visibilidadCarrito, setVisibilidadCarrito] = useState("none");
+    const [visibilidadAtrasLiga, setVisibilidadAtrasLiga] = useState("none");
+    const [visibilidadAtrasEquipo, setVisibilidadAtrasEquipo] = useState("none");
 
     return (
         <div>
@@ -43,7 +49,16 @@ export default function FirstPost({camisetas,ligas}) {
                 setVisibilidadTitulo={setVisibilidadTitulo} 
                 setTitulo={setTitulo}
                 setVisibilidadCarrito={setVisibilidadCarrito}
-                todasLasCamisetas={camisetas} />
+                todasLasCamisetas={camisetas} 
+                visibilidadAtrasLiga={visibilidadAtrasLiga}
+                visibilidadAtrasEquipo={visibilidadAtrasEquipo}
+                tituloLiga={tituloLiga}
+                tituloEquipo={tituloEquipo}
+                idLiga={idLiga}
+                idEquipo={idEquipo}
+                setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
+                setVisibilidadAtrasEquipo={setVisibilidadAtrasEquipo}
+                setEquiposVisibles={setEquiposVisibles} />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
@@ -64,14 +79,17 @@ export default function FirstPost({camisetas,ligas}) {
                             setCamisetasVisibles={setCamisetasVisibles} 
                             setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
                             setEquiposVisibles={setEquiposVisibles} 
-                            setTitulo={setTitulo} />
+                            setTitulo={setTitulo} 
+                            setIdLiga={setIdLiga} />
                     </div>
                     <div style={{ display: visibilidadFiltrarEquipo }}>
                         <FiltrarPorEquipos  
                             equipos={equiposVisibles} 
                             setCamisetasVisibles={setCamisetasVisibles} 
                             setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
-                            setTitulo={setTitulo} />
+                            setTitulo={setTitulo}
+                            setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
+                            setTituloLiga={setTituloLiga} />
                     </div>
                     <div style={{ display: visibilidadCamisetas }} >
                         <ConjuntoCamisetas 
@@ -81,7 +99,13 @@ export default function FirstPost({camisetas,ligas}) {
                             setVisibilidadFiltrarEquipo = {setVisibilidadFiltrarEquipo} 
                             setVisibilidadFiltrarLiga = {setVisibilidadFiltrarLiga}
                             setVisibilidadCamisetaActual={setVisibilidadCamisetaActual}
-                            setTitulo={setTitulo} />
+                            setTitulo={setTitulo}
+                            setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
+                            setVisibilidadAtrasEquipo={setVisibilidadAtrasEquipo}
+                            setTituloLiga={setTituloLiga} 
+                            setTituloEquipo={setTituloEquipo}
+                            setIdLiga={setIdLiga}
+                            setIdEquipo={setIdEquipo} />
                     </div>
                     <div style={{ display: visibilidadCamisetaActual }}>
                         <Camiseta 
