@@ -42,6 +42,16 @@ export default function Camiseta({
             setKey(key + 1);
             setAllProducts([...allProducts,producto]);
             setCountProducts(countProducts + 1);
+           /* if (localStorage.getItem("carrito") == null) {
+                localStorage.setItem("carrito",producto);
+            }
+            else {
+                localStorage.setItem("carrito",localStorage.getItem("carrito")+producto);
+            }
+            localStorage.setItem("carrito",localStorage.getItem("carrito")+producto);
+            localStorage.setItem("cantProductos",Number(localStorage.getItem("cantProductos"))+Number(1));
+            console.log(localStorage.getItem("carrito"));
+            console.log(localStorage.getItem("cantProductos"));*/
             setTalle(null);
         }
     };

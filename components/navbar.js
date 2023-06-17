@@ -15,13 +15,19 @@ export default function NavBar({
   todasLasCamisetas,
   visibilidadAtrasLiga,
   visibilidadAtrasEquipo,
+  visibilidadIniciarSesion,
+  visibilidadCerrarSesion,
   setVisibilidadAtrasLiga,
   setVisibilidadAtrasEquipo,
   setEquiposVisibles,
   tituloLiga,
   tituloEquipo,
   idLiga,
-  idEquipo
+  idEquipo,
+  setVisibilidadLogin,
+  setVisibilidadRegister,
+  setVisibilidadCerrarSesion,
+  setVisibilidadIniciarSesion
 }) {
 
   async function handleClickCamisetas(){
@@ -36,6 +42,8 @@ export default function NavBar({
     setVisibilidadCarrito("block");
     setVisibilidadAtrasLiga("none");
     setVisibilidadAtrasEquipo("none");
+    setVisibilidadLogin("none");
+    setVisibilidadRegister("none");
   };
 
   async function handleClickLiga(){
@@ -70,6 +78,28 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
   };
 
+  const handleClickIniciarSesion = () => {
+    setVisibilidadLogin("block");
+    setVisibilidadFiltrarLiga("none");
+    setVisibilidadFiltrarEquipo("none")
+    setVisibilidadCarrusel("none"); 
+    setVisibilidadCamisetas("none");
+    setVisibilidadCamisetaActual("none");
+    setVisibilidadCarrito("block");
+    setVisibilidadAtrasLiga("none");
+    setVisibilidadAtrasEquipo("none");
+    setVisibilidadTitulo("block");
+    setTitulo("Iniciar sesión");
+    setVisibilidadRegister("none");
+  };
+
+  const handleClickCerrarSesion = () => {
+    alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
+    localStorage.setItem("usuario",'');
+    setVisibilidadCerrarSesion("none");
+    setVisibilidadIniciarSesion("block");
+  };
+
   const handleClickInicio = () => {
     setVisibilidadFiltrarLiga("none");
     setVisibilidadFiltrarEquipo("none")
@@ -80,6 +110,8 @@ export default function NavBar({
     setVisibilidadCarrito("none");
     setVisibilidadAtrasLiga("none");
     setVisibilidadAtrasEquipo("none");
+    setVisibilidadLogin("none");
+    setVisibilidadRegister("none");
   };
   
   return (
@@ -105,6 +137,12 @@ export default function NavBar({
           </li>
           <li class="nav-item active" style={{ display: visibilidadAtrasEquipo }}>
             <a class="nav-link" onClick={handleClickEquipo}> {tituloEquipo} </a>
+          </li>
+          <li class="nav-item active" style={{ display: visibilidadIniciarSesion }}>
+            <a class="nav-link" onClick={handleClickIniciarSesion}> Iniciar sesión </a>
+          </li>
+          <li class="nav-item active" style={{ display: visibilidadCerrarSesion }}>
+            <a class="nav-link" onClick={handleClickCerrarSesion}> Cerrar Sesión </a>
           </li>
         </ul>
       </div>

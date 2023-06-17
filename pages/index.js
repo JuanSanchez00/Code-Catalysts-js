@@ -7,13 +7,15 @@ import ConjuntoCamisetas from '../components/conjuntoCamisetas';
 import FiltrarPorLigas from '../components/filtrarPorLigas';
 import FiltrarPorEquipos from '../components/filtrarPorEquipos';
 import Camiseta from '../components/pedidoCamiseta';
+import Login from '../components/login';
+import Register from '../components/register';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState } from "react";
 
 export default function FirstPost({camisetas,ligas}) {
     const [allProducts, setAllProducts] = useState([]);
-	  const [countProducts, setCountProducts] = useState(0);
+	const [countProducts, setCountProducts] = useState(0);
     const [camisetaActual, setCamisetaActual] = useState(null);
     const [camisetasVisibles, setCamisetasVisibles] = useState(camisetas);
     const [equiposVisibles, setEquiposVisibles] = useState(null);
@@ -24,6 +26,8 @@ export default function FirstPost({camisetas,ligas}) {
     const [idEquipo, setIdEquipo] = useState("");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
+    const [visibilidadLogin, setVisibilidadLogin] = useState("none");
+    const [visibilidadRegister, setVisibilidadRegister] = useState("none");
     const [visibilidadTitulo, setVisibilidadTitulo] = useState("none");
     const [visibilidadFiltrarLiga, setVisibilidadFiltrarLiga] = useState("none");
     const [visibilidadFiltrarEquipo, setVisibilidadFiltrarEquipo] = useState("none");
@@ -32,6 +36,8 @@ export default function FirstPost({camisetas,ligas}) {
     const [visibilidadCarrito, setVisibilidadCarrito] = useState("none");
     const [visibilidadAtrasLiga, setVisibilidadAtrasLiga] = useState("none");
     const [visibilidadAtrasEquipo, setVisibilidadAtrasEquipo] = useState("none");
+    const [visibilidadIniciarSesion, setVisibilidadIniciarSesion] = useState("block");
+    const [visibilidadCerrarSesion, setVisibilidadCerrarSesion] = useState("none");
 
     return (
         <div>
@@ -58,7 +64,13 @@ export default function FirstPost({camisetas,ligas}) {
                 idEquipo={idEquipo}
                 setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
                 setVisibilidadAtrasEquipo={setVisibilidadAtrasEquipo}
-                setEquiposVisibles={setEquiposVisibles} />
+                setEquiposVisibles={setEquiposVisibles}
+                visibilidadCerrarSesion={visibilidadCerrarSesion}
+                visibilidadIniciarSesion={visibilidadIniciarSesion}
+                setVisibilidadLogin={setVisibilidadLogin}
+                setVisibilidadRegister={setVisibilidadRegister}
+                setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
+                setVisibilidadIniciarSesion={setVisibilidadIniciarSesion} />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
@@ -69,6 +81,30 @@ export default function FirstPost({camisetas,ligas}) {
                         titulo={titulo}
                         visibilidadTitulo={visibilidadTitulo} />
                 </div>
+                    <div style={{ display: visibilidadLogin}}>
+                        <Login
+                            setVisibilidadLogin={setVisibilidadLogin}
+                            setVisibilidadRegister={setVisibilidadRegister}
+                            setVisibilidadCamisetas={setVisibilidadCamisetas}
+                            setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga}
+                            setTitulo={setTitulo}
+                            setVisibilidadIniciarSesion={setVisibilidadIniciarSesion}
+                            setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
+                            todasLasCamisetas={camisetas}
+                            setCamisetasVisibles={setCamisetasVisibles}  />
+                    </div>
+                    <div style={{ display: visibilidadRegister}}>
+                        <Register
+                            setVisibilidadLogin={setVisibilidadLogin}
+                            setVisibilidadRegister={setVisibilidadRegister}
+                            setVisibilidadCamisetas={setVisibilidadCamisetas}
+                            setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga}
+                            setTitulo={setTitulo}
+                            setVisibilidadIniciarSesion={setVisibilidadIniciarSesion}
+                            setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
+                            todasLasCamisetas={camisetas}
+                            setCamisetasVisibles={setCamisetasVisibles}  />
+                    </div>
                     <div style={{ display: visibilidadCarrusel}}>
                         <Carousel/>
                     </div>

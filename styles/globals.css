@@ -16,6 +16,10 @@ p {
   color: black;
 }
 
+.formulario {
+	margin: 15px;
+}
+
 footer p {
 	color: white;
 }

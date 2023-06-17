@@ -12,8 +12,6 @@ export default function Header ({
     let json;
     
     const [active, setActive] = useState(false);
-    const [mailCliente, setMailCliente] = useState('');
-    const [visibilidadMailCliente, setVisibilidadMailCliente] = useState("none");
     
     const eliminarCamiseta = product => {
 		const results = allProducts.filter(
@@ -22,40 +20,30 @@ export default function Header ({
 
 		setCountProducts(countProducts - 1);
 		setAllProducts(results);
-        setVisibilidadMailCliente("none");
 	};
 
     const vaciarCarrito = () => {
 		setAllProducts([]);
 		setCountProducts(0);
-        setVisibilidadMailCliente("none");
 	};
 
     const finalizarCompra = () => {
-        if (mailCliente == '') {
-            setVisibilidadMailCliente('block');
+        const usuario = localStorage.getItem("usuario");
+        if (usuario == '' || usuario == null) {
+            alert("Antes de finalizar la compra debe iniciar sesion.");
         }
         else {
-            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-            const isValidEmail = emailRegex.test(mailCliente);
-            if (isValidEmail) {
-                allProducts.forEach((producto, index) => {
-                    if (index === 0) {
-                        json = '{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                    } 
-                    else {
-                        json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                    }
-                });
-                registrarPedido(json,mailCliente);
-                setVisibilidadMailCliente('none');
-                setMailCliente('');
-                vaciarCarrito();
-                alert("Su compra se ha realizado con éxito.");
-            }
-            else {
-                alert("Debe ingresar un email válido");
-            }
+            allProducts.forEach((producto, index) => {
+                if (index === 0) {
+                    json = '{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
+                } 
+                else {
+                    json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
+                }
+            });
+            registrarPedido(json,usuario);
+            vaciarCarrito();
+            alert("Su compra se ha realizado con éxito.");
         }
 	};
 
@@ -126,17 +114,6 @@ export default function Header ({
                             <button className='btn-clear-all' onClick={vaciarCarrito}>
                                 Vaciar Carrito
                             </button>
-                            <div style={{ display: visibilidadMailCliente }}>
-                                <label className="labelEmail">
-                                    Ingrese su email:
-                                </label>
-                                <input
-                                    className="inputEmail"
-                                    type="text"
-                                    value={mailCliente}
-                                    onChange={(e) => setMailCliente(e.target.value)}
-                                />
-                            </div>
                             <button className='btn-clear-all' onClick={finalizarCompra}>
                                 Finalizar compra
                             </button>
