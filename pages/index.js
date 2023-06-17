@@ -9,6 +9,7 @@ import FiltrarPorEquipos from '../components/filtrarPorEquipos';
 import Camiseta from '../components/pedidoCamiseta';
 import Login from '../components/login';
 import Register from '../components/register';
+import Pedidos from '../components/pedidos';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState } from "react";
@@ -38,7 +39,7 @@ export default function FirstPost({camisetas,ligas}) {
     const [visibilidadAtrasEquipo, setVisibilidadAtrasEquipo] = useState("none");
     const [visibilidadIniciarSesion, setVisibilidadIniciarSesion] = useState("block");
     const [visibilidadCerrarSesion, setVisibilidadCerrarSesion] = useState("none");
-
+    const [visibilidadPedidos, setVisibilidadPedidos] = useState("none");
     return (
         <div>
             <Head>
@@ -70,7 +71,9 @@ export default function FirstPost({camisetas,ligas}) {
                 setVisibilidadLogin={setVisibilidadLogin}
                 setVisibilidadRegister={setVisibilidadRegister}
                 setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
-                setVisibilidadIniciarSesion={setVisibilidadIniciarSesion} />
+                setVisibilidadIniciarSesion={setVisibilidadIniciarSesion}
+                setVisibilidadPedidos={setVisibilidadPedidos}
+                visibilidadPedidos={visibilidadPedidos} />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
@@ -104,6 +107,9 @@ export default function FirstPost({camisetas,ligas}) {
                             setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
                             todasLasCamisetas={camisetas}
                             setCamisetasVisibles={setCamisetasVisibles}  />
+                    </div>
+                    <div style={{ display: visibilidadPedidos}}>
+                        <Pedidos  />
                     </div>
                     <div style={{ display: visibilidadCarrusel}}>
                         <Carousel/>

@@ -27,7 +27,7 @@ export default function Login({
                 }
                 else {
                     //hacer post al login de la api
-                    alert("Ha iniciado sesión correctamente");
+                    alert("Ha iniciado sesión correctamente como "+email);
                     localStorage.setItem("usuario",email);
                     
                     setVisibilidadLogin("none");

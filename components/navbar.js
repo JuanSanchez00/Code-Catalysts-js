@@ -27,7 +27,9 @@ export default function NavBar({
   setVisibilidadLogin,
   setVisibilidadRegister,
   setVisibilidadCerrarSesion,
-  setVisibilidadIniciarSesion
+  setVisibilidadIniciarSesion,
+  setVisibilidadPedidos,
+  visibilidadPedidos
 }) {
 
   async function handleClickCamisetas(){
@@ -47,12 +49,9 @@ export default function NavBar({
   };
 
   async function handleClickLiga(){
-    setVisibilidadTitulo("none");
-    setVisibilidadCarrito("none");
-    setVisibilidadCamisetas("none");
     setEquiposVisibles(await getEquiposPorLiga(idLiga));
-    setTitulo("Camisetas de " + tituloLiga);
     setCamisetasVisibles(await getCamisetasPorLiga(idLiga));
+    setTitulo("Camisetas de " + tituloLiga);
     setVisibilidadFiltrarLiga("none");
     setVisibilidadFiltrarEquipo("block");
     setVisibilidadCarrusel("none"); 
@@ -98,6 +97,22 @@ export default function NavBar({
     localStorage.setItem("usuario",'');
     setVisibilidadCerrarSesion("none");
     setVisibilidadIniciarSesion("block");
+    if (visibilidadPedidos == "block") {
+      setCamisetasVisibles(todasLasCamisetas);
+      setVisibilidadFiltrarLiga("block");
+      setVisibilidadFiltrarEquipo("none");
+      setVisibilidadCarrusel("none"); 
+      setVisibilidadCamisetas("block");
+      setVisibilidadTitulo("block");
+      setVisibilidadCamisetaActual("none");
+      setTitulo("Todas las camisetas");
+      setVisibilidadCarrito("block");
+      setVisibilidadAtrasLiga("none");
+      setVisibilidadAtrasEquipo("none");
+      setVisibilidadLogin("none");
+      setVisibilidadRegister("none");
+      setVisibilidadPedidos("none");
+    }
   };
 
   const handleClickInicio = () => {
@@ -112,6 +127,22 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
     setVisibilidadLogin("none");
     setVisibilidadRegister("none");
+  };
+
+  const handleClickMisPedidos = () => {
+    setVisibilidadFiltrarLiga("none");
+    setVisibilidadFiltrarEquipo("none")
+    setVisibilidadCarrusel("none"); 
+    setVisibilidadCamisetas("none");
+    setVisibilidadTitulo("block");
+    setVisibilidadCamisetaActual("none");
+    setVisibilidadCarrito("block");
+    setVisibilidadAtrasLiga("none");
+    setVisibilidadAtrasEquipo("none");
+    setVisibilidadLogin("none");
+    setVisibilidadRegister("none");
+    setVisibilidadPedidos("block");
+    setTitulo("Mis pedidos");
   };
   
   return (
@@ -140,6 +171,9 @@ export default function NavBar({
           </li>
           <li class="nav-item active" style={{ display: visibilidadIniciarSesion }}>
             <a class="nav-link" onClick={handleClickIniciarSesion}> Iniciar sesión </a>
+          </li>
+          <li class="nav-item active" style={{ display: visibilidadCerrarSesion }}>
+            <a class="nav-link" onClick={handleClickMisPedidos}> Mis pedidos </a>
           </li>
           <li class="nav-item active" style={{ display: visibilidadCerrarSesion }}>
             <a class="nav-link" onClick={handleClickCerrarSesion}> Cerrar Sesión </a>
