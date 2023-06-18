@@ -66,3 +66,55 @@ export async function registrarPedido(camisetas, email) {
       body: json, // body data type must match "Content-Type" header
     })
 }
+
+export async function login(email, contraseña) {
+  const json = { email: email, password: contraseña };
+
+  try {
+    const response = await fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/login', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(json),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return true;
+    } else {
+      return false;
+    }
+
+  } catch (error) {
+    console.error('Ocurrió un error en la solicitud:', error);
+  }
+}
+
+export async function register(email, contraseña) {
+  const json = '{ "email": "'+email+'", "password": "'+contraseña+'"}';
+  
+  try {
+    const response = await fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/register`, {
+      method: 'POST', 
+      mode: 'cors', 
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: json, // body data type must match "Content-Type" header
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('Error en la petición de registro:', error);
+    return false;
+  }
+}

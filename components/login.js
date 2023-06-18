@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login} from "../data/api";
 
 export default function Login({
     setVisibilidadLogin,
@@ -14,38 +15,46 @@ export default function Login({
     const [email, setEmail] = useState(null);
     const [contraseña, setContraseña] = useState(null);
 
-    const handleClickIniciarSesion = () => {
+    const handleClickIniciarSesion = async () => {
         if (email == null) {
-            alert("Por favor ingrese su correo electrónico.");
-        }
-        else {
-            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-            const isValidEmail = emailRegex.test(email);
-            if (isValidEmail) {
-                if (contraseña == null) {
-                    alert("Por favor ingrese su contraseña."); 
+          alert("Por favor ingrese su correo electrónico.");
+        } else {
+          const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+          const isValidEmail = emailRegex.test(email);
+          if (isValidEmail) {
+            if (contraseña == null) {
+              alert("Por favor ingrese su contraseña.");
+            } else {
+              // Hacer post al login de la API
+              try {
+                const validacion = await login(email, contraseña);
+      
+                if (validacion) {
+                  alert("Ha iniciado sesión correctamente como " + email);
+                  localStorage.setItem("usuario", email);
+      
+                  setVisibilidadLogin("none");
+                  setVisibilidadCamisetas("block");
+                  setVisibilidadFiltrarLiga("block");
+                  setTitulo("Todas las camisetas");
+                  setVisibilidadIniciarSesion("none");
+                  setVisibilidadCerrarSesion("block");
+                  setCamisetasVisibles(todasLasCamisetas);
+                } else {
+                  alert("Credenciales inválidas");
                 }
-                else {
-                    //hacer post al login de la api
-                    alert("Ha iniciado sesión correctamente como "+email);
-                    localStorage.setItem("usuario",email);
-                    
-                    setVisibilidadLogin("none");
-                    setVisibilidadCamisetas("block");
-                    setVisibilidadFiltrarLiga("block");
-                    setTitulo("Todas las camisetas");
-                    setVisibilidadIniciarSesion("none");
-                    setVisibilidadCerrarSesion("block");
-                    setCamisetasVisibles(todasLasCamisetas);
-                }
+              } catch (error) {
+                console.error("Ocurrió un error en la solicitud:", error);
+                alert("Error al iniciar sesión");
+              }
             }
-            else {
-                alert("Debe ingresar un correo electrónico válido.");
-            }
+          } else {
+            alert("Debe ingresar un correo electrónico válido.");
+          }
         }
         setEmail(null);
         setContraseña(null);
-    }
+    };
 
     const handleClickRegistrarse = () => {
         setVisibilidadLogin("none");

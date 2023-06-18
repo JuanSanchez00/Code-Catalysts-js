@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { register } from "../data/api";
 
 export default function Register({
     setVisibilidadLogin,
@@ -14,37 +15,44 @@ export default function Register({
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('');
 
-    const handleClickRegistrarse = () => {
-        if (email == '') {
-            alert("Por favor ingrese su correo electrónico.");
-        }
-        else {
-            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-            const isValidEmail = emailRegex.test(email);
-            if (isValidEmail) {
-                if (contraseña == '') {
-                    alert("Por favor ingrese su contraseña."); 
+    const handleClickRegistrarse = async () => {
+        if (email === '') {
+          alert("Por favor ingrese su correo electrónico.");
+        } else {
+          const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+          const isValidEmail = emailRegex.test(email);
+          if (isValidEmail) {
+            if (contraseña === '') {
+              alert("Por favor ingrese su contraseña.");
+            } else {
+              try {
+                const validacion = await register(email, contraseña);
+                if (validacion) {
+                  alert("Se ha registrado correctamente.");
+                  localStorage.setItem("usuario", email);
+                  setContraseña('');
+                  setEmail('');
+                  setVisibilidadLogin("none");
+                  setVisibilidadIniciarSesion("none");
+                  setVisibilidadCamisetas("block");
+                  setVisibilidadFiltrarLiga("block");
+                  setTitulo("Todas las camisetas");
+                  setVisibilidadRegister("none");
+                  setVisibilidadCerrarSesion("block");
+                  setCamisetasVisibles(todasLasCamisetas);
+                } else {
+                  alert("Email ya registrado");
                 }
-                else {
-                    //hacer post al registrarse de la api
-                    alert("Se ha registrado correctamente.");
-                    localStorage.setItem("usuario",email);
-                    setContraseña('');
-                    setEmail('');
-                    setVisibilidadLogin("none");
-                    setVisibilidadCamisetas("block");
-                    setVisibilidadFiltrarLiga("block");
-                    setTitulo("Todas las camisetas");
-                    setVisibilidadRegister("none");
-                    setVisibilidadCerrarSesion("block");
-                    setCamisetasVisibles(todasLasCamisetas);
-                }
+              } catch (error) {
+                console.error('Error al registrar:', error);
+                alert("Error al registrar. Por favor, intenta nuevamente.");
+              }
             }
-            else {
-                alert("Debe ingresar un correo electrónico válido.");
-            }
+          } else {
+            alert("Debe ingresar un correo electrónico válido.");
+          }
         }
-    }
+      }
     return ( 
         <form className="formulario">
             <div class="form-outline mb-4">
