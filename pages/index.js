@@ -25,6 +25,7 @@ export default function FirstPost({camisetas,ligas}) {
     const [tituloEquipo, setTituloEquipo] = useState("");
     const [idLiga, setIdLiga] = useState("");
     const [idEquipo, setIdEquipo] = useState("");
+    const [pedidos, setPedidos] = useState("");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
     const [visibilidadLogin, setVisibilidadLogin] = useState("none");
@@ -73,7 +74,8 @@ export default function FirstPost({camisetas,ligas}) {
                 setVisibilidadCerrarSesion={setVisibilidadCerrarSesion}
                 setVisibilidadIniciarSesion={setVisibilidadIniciarSesion}
                 setVisibilidadPedidos={setVisibilidadPedidos}
-                visibilidadPedidos={visibilidadPedidos} />
+                visibilidadPedidos={visibilidadPedidos} 
+                setPedidos={setPedidos}/>
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
@@ -109,7 +111,8 @@ export default function FirstPost({camisetas,ligas}) {
                             setCamisetasVisibles={setCamisetasVisibles}  />
                     </div>
                     <div style={{ display: visibilidadPedidos}}>
-                        <Pedidos  />
+                        <Pedidos  
+                            pedidos={pedidos}/>
                     </div>
                     <div style={{ display: visibilidadCarrusel}}>
                         <Carousel/>

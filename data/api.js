@@ -118,3 +118,10 @@ export async function register(email, contraseña) {
     return false;
   }
 }
+
+export async function getMisPedidos(email) {
+  const pedidos = await fetch(
+    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedidos/${email}`
+  ).then((response) => response.json());
+  return pedidos;
+}

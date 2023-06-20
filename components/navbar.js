@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState } from "react";
-import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga } from "../data/api";
+import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga, getMisPedidos } from "../data/api";
 
 export default function NavBar({
   setVisibilidadFiltrarLiga,
@@ -29,7 +29,8 @@ export default function NavBar({
   setVisibilidadCerrarSesion,
   setVisibilidadIniciarSesion,
   setVisibilidadPedidos,
-  visibilidadPedidos
+  visibilidadPedidos,
+  setPedidos
 }) {
 
   async function handleClickCamisetas(){
@@ -46,6 +47,7 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
     setVisibilidadLogin("none");
     setVisibilidadRegister("none");
+    setVisibilidadPedidos("none");
   };
 
   async function handleClickLiga(){
@@ -94,6 +96,7 @@ export default function NavBar({
 
   const handleClickCerrarSesion = () => {
     alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
+    setPedidos("");
     localStorage.setItem("usuario",'');
     setVisibilidadCerrarSesion("none");
     setVisibilidadIniciarSesion("block");
@@ -127,9 +130,11 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
     setVisibilidadLogin("none");
     setVisibilidadRegister("none");
+    setVisibilidadPedidos("none");
   };
 
-  const handleClickMisPedidos = () => {
+  async function handleClickMisPedidos(){
+    setPedidos(await getMisPedidos(localStorage.getItem("usuario")));
     setVisibilidadFiltrarLiga("none");
     setVisibilidadFiltrarEquipo("none")
     setVisibilidadCarrusel("none"); 
