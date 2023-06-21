@@ -14,7 +14,7 @@ export default function Pedidos({ pedidos }) {
       {pedidos.map((pedido) => (
         <div key={pedido.id_pedido} style={styles.pedidoContainer}>
           <p style={styles.descripcion}>{pedido.descripcion}</p>
-          <p style={styles.precio}>{pedido.precio}$</p>
+          <p style={styles.precio}>${pedido.precio}</p>
           <p style={styles.talle}>{pedido.talle}</p>
           <p style={styles.fecha}>{pedido.fecha}</p>
         </div>

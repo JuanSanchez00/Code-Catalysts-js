@@ -10,6 +10,8 @@ export default function Camiseta({
 	setAllProducts,
 	countProducts,
 	setCountProducts,
+    total,
+    setTotal
 }) {
 
     let id,imagen,descripcion,precio,talles; 
@@ -37,21 +39,13 @@ export default function Camiseta({
                 key: key,
                 id: id,
                 descripcion: descripcion,
-                talle: talle
+                talle: talle,
+                precio: precio 
             };
             setKey(key + 1);
             setAllProducts([...allProducts,producto]);
             setCountProducts(countProducts + 1);
-           /* if (localStorage.getItem("carrito") == null) {
-                localStorage.setItem("carrito",producto);
-            }
-            else {
-                localStorage.setItem("carrito",localStorage.getItem("carrito")+producto);
-            }
-            localStorage.setItem("carrito",localStorage.getItem("carrito")+producto);
-            localStorage.setItem("cantProductos",Number(localStorage.getItem("cantProductos"))+Number(1));
-            console.log(localStorage.getItem("carrito"));
-            console.log(localStorage.getItem("cantProductos"));*/
+            setTotal(total + Number(precio));
             setTalle(null);
         }
     };

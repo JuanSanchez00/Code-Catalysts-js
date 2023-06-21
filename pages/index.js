@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 export default function FirstPost({camisetas,ligas}) {
     const [allProducts, setAllProducts] = useState([]);
 	const [countProducts, setCountProducts] = useState(0);
+    const [total, setTotal] = useState(0);
     const [camisetaActual, setCamisetaActual] = useState(null);
     const [camisetasVisibles, setCamisetasVisibles] = useState(camisetas);
     const [equiposVisibles, setEquiposVisibles] = useState(null);
@@ -55,6 +56,20 @@ export default function FirstPost({camisetas,ligas}) {
     useEffect(() => {
         localStorage.setItem('cantProducts', Number(countProducts));
         }, [countProducts]);
+
+    //al iniciar la pagina carga en total lo que esta en el total de localStorage
+    useEffect(() => {
+        const totalInicial = localStorage.getItem('total');
+        if (totalInicial) {
+            setTotal(Number(totalInicial));
+        }
+        }, []);
+
+    //cada vez que total se actualiza, su contenido se guarda en el total de localStorage
+    useEffect(() => {
+        localStorage.setItem('total', Number(total));
+        }, [total]);
+        
 
     //al iniciar la pagina carga en allProduct lo que esta en el carrito de localStorage
     useEffect(() => {
@@ -111,6 +126,8 @@ export default function FirstPost({camisetas,ligas}) {
                         setAllProducts={setAllProducts}
                         countProducts={countProducts}
                         setCountProducts={setCountProducts}
+                        total={total}
+                        setTotal={setTotal}
                         titulo={titulo}
                         visibilidadTitulo={visibilidadTitulo} />
                 </div>
@@ -187,6 +204,8 @@ export default function FirstPost({camisetas,ligas}) {
                             setAllProducts={setAllProducts}
                             countProducts={countProducts}
                             setCountProducts={setCountProducts}
+                            total={total}
+                            setTotal={setTotal}
                         />
                 </div>
             </div>

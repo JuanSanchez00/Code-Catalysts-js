@@ -6,6 +6,8 @@ export default function Header ({
 	setAllProducts,
 	countProducts,
 	setCountProducts,
+    total,
+    setTotal,
     titulo,
     visibilidadTitulo,
 }) {
@@ -20,11 +22,13 @@ export default function Header ({
 
 		setCountProducts(countProducts - 1);
 		setAllProducts(results);
+        setTotal(total - Number(product.precio));
 	};
 
     const vaciarCarrito = () => {
 		setAllProducts([]);
 		setCountProducts(0);
+        setTotal(0);
 	};
 
     const finalizarCompra = () => {
@@ -91,6 +95,9 @@ export default function Header ({
                                             <p className='titulo-producto-carrito'>
                                                 {product.talle}
                                             </p>
+                                            <span className='precio-producto-carrito'>
+												${product.precio}
+											</span>
                                         </div>
                                         <svg
                                             xmlns='http://www.w3.org/2000/svg'
@@ -110,7 +117,10 @@ export default function Header ({
                                     </div>
                                 ))}
                             </div>
-
+                            <div className='cart-total'>
+								<h3>Total:</h3>
+								<span className='total-pagar'>${total}</span>
+							</div>
                             <button className='btn-clear-all' onClick={vaciarCarrito}>
                                 Vaciar Carrito
                             </button>

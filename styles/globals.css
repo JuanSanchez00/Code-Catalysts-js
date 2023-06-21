@@ -307,6 +307,18 @@ header {
 	
   }
 
+  @media screen and (max-width: 389px) {
+	nav img {
+		display: none;
+	}
+  }
+
+  @media screen and (max-width: 350px) {
+	#tituloNav {
+		font-size: 15px;
+	}
+  }
+
   .nav-item {
 	margin-left: 10px;
   }
