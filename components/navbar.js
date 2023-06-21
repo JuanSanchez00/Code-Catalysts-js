@@ -30,7 +30,10 @@ export default function NavBar({
   setVisibilidadIniciarSesion,
   setVisibilidadPedidos,
   visibilidadPedidos,
-  setPedidos
+  setPedidos,
+  setAllProducts,
+  setCountProducts,
+  setTotal
 }) {
  useEffect(() => {
     const usuarioGuardado = localStorage.getItem('usuario');
@@ -107,6 +110,9 @@ export default function NavBar({
 
   const handleClickCerrarSesion = () => {
     alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
+    setAllProducts([]);
+    setCountProducts(0);
+    setTotal(0);
     setPedidos("");
     localStorage.removeItem('usuario');
     setVisibilidadCerrarSesion("none");

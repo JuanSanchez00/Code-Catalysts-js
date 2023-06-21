@@ -118,7 +118,11 @@ export default function FirstPost({camisetas,ligas}) {
                 setVisibilidadIniciarSesion={setVisibilidadIniciarSesion}
                 setVisibilidadPedidos={setVisibilidadPedidos}
                 visibilidadPedidos={visibilidadPedidos} 
-                setPedidos={setPedidos}/>
+                setPedidos={setPedidos}
+                setAllProducts={setAllProducts}
+                setCountProducts={setCountProducts}
+                setTotal={setTotal}
+                />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
