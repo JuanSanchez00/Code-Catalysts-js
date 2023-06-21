@@ -27,8 +27,9 @@ export default function Register({
             } else {
               try {
                 const validacion = await register(email, contraseña);
-                if (validacion) {
-                  alert("Se ha registrado correctamente.");
+                console.log(validacion);
+                if (validacion.registro) {
+                  alert(validacion.mensaje);
                   localStorage.setItem("usuario", email);
                   setContraseña('');
                   setEmail('');
@@ -41,7 +42,7 @@ export default function Register({
                   setVisibilidadCerrarSesion("block");
                   setCamisetasVisibles(todasLasCamisetas);
                 } else {
-                  alert("Email ya registrado");
+                  alert(validacion.mensaje);
                 }
               } catch (error) {
                 console.error('Error al registrar:', error);
