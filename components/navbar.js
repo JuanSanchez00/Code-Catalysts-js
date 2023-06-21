@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from "react";
+import { useEffect } from 'react';
 import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga, getMisPedidos } from "../data/api";
 
 export default function NavBar({
@@ -32,6 +32,17 @@ export default function NavBar({
   visibilidadPedidos,
   setPedidos
 }) {
+ useEffect(() => {
+    const usuarioGuardado = localStorage.getItem('usuario');
+    if (typeof usuarioGuardado === 'string') {
+      setVisibilidadIniciarSesion("none");
+      setVisibilidadCerrarSesion("block");
+    }
+    else {
+      setVisibilidadIniciarSesion("block");
+      setVisibilidadCerrarSesion("none");
+    }
+  }, []);
 
   async function handleClickCamisetas(){
     setCamisetasVisibles(todasLasCamisetas);
@@ -97,7 +108,7 @@ export default function NavBar({
   const handleClickCerrarSesion = () => {
     alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
     setPedidos("");
-    localStorage.setItem("usuario",'');
+    localStorage.removeItem('usuario');
     setVisibilidadCerrarSesion("none");
     setVisibilidadIniciarSesion("block");
     if (visibilidadPedidos == "block") {
