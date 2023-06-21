@@ -13,6 +13,7 @@ import Pedidos from '../components/pedidos';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState } from "react";
+import { useEffect } from 'react';
 
 export default function FirstPost({camisetas,ligas}) {
     const [allProducts, setAllProducts] = useState([]);
@@ -41,6 +42,33 @@ export default function FirstPost({camisetas,ligas}) {
     const [visibilidadIniciarSesion, setVisibilidadIniciarSesion] = useState("block");
     const [visibilidadCerrarSesion, setVisibilidadCerrarSesion] = useState("none");
     const [visibilidadPedidos, setVisibilidadPedidos] = useState("none");
+
+    //al iniciar la pagina carga en allProduct lo que esta en el carrito de localStorage
+    useEffect(() => {
+        const cant = localStorage.getItem('cantProducts');
+        if (cant) {
+            setCountProducts(Number(cant));
+        }
+      }, []);
+
+    //cada vez que countProduct se actualiza, su contenido se guarda en el cantProducts de localStorage
+    useEffect(() => {
+        localStorage.setItem('cantProducts', Number(countProducts));
+        }, [countProducts]);
+
+    //al iniciar la pagina carga en allProduct lo que esta en el carrito de localStorage
+    useEffect(() => {
+        const carrito = localStorage.getItem('carrito');
+        if (carrito) {
+            setAllProducts(JSON.parse(carrito));
+        }
+      }, []);
+    
+    //cada vez que allProduct se actualiza, su contenido se guarda en el carrito de localStorage
+    useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(allProducts));
+    }, [allProducts]);
+
     return (
         <div>
             <Head>
