@@ -10,6 +10,7 @@ export default function Header ({
     setTotal,
     titulo,
     visibilidadTitulo,
+    setVisibilidadMercadoPago
 }) {
     let json;
     
@@ -45,9 +46,10 @@ export default function Header ({
                     json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
                 }
             });
-            registrarPedido(json,usuario);
-            vaciarCarrito();
-            alert("Su compra se ha realizado con éxito.");
+            setVisibilidadMercadoPago("block")
+            //registrarPedido(json,usuario);
+            //vaciarCarrito();
+            //alert("Su compra se ha realizado con éxito.");
         }
 	};
 

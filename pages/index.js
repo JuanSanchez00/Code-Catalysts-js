@@ -10,12 +10,15 @@ import Camiseta from '../components/pedidoCamiseta';
 import Login from '../components/login';
 import Register from '../components/register';
 import Pedidos from '../components/pedidos';
+import MercadoPago from '../components/mercadoPago';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState } from "react";
 import { useEffect } from 'react';
 
+
 export default function FirstPost({camisetas,ligas}) {
+    
     const [allProducts, setAllProducts] = useState([]);
 	const [countProducts, setCountProducts] = useState(0);
     const [total, setTotal] = useState(0);
@@ -30,6 +33,7 @@ export default function FirstPost({camisetas,ligas}) {
     const [pedidos, setPedidos] = useState("");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
+    const [visibilidadMercadoPago, setVisibilidadMercadoPago] = useState("none");
     const [visibilidadLogin, setVisibilidadLogin] = useState("none");
     const [visibilidadRegister, setVisibilidadRegister] = useState("none");
     const [visibilidadTitulo, setVisibilidadTitulo] = useState("none");
@@ -124,6 +128,11 @@ export default function FirstPost({camisetas,ligas}) {
                 setTotal={setTotal}
                 />
             <div className='contenedorBody'>
+                <div style={{ display: visibilidadMercadoPago}}>
+                    <MercadoPago
+                        total={total} 
+                    />
+                </div>
                 <div style={{ display: visibilidadCarrito}}>
                     <Header 
                         allProducts={allProducts}
@@ -133,7 +142,8 @@ export default function FirstPost({camisetas,ligas}) {
                         total={total}
                         setTotal={setTotal}
                         titulo={titulo}
-                        visibilidadTitulo={visibilidadTitulo} />
+                        visibilidadTitulo={visibilidadTitulo}
+                        setVisibilidadMercadoPago={setVisibilidadMercadoPago} />
                 </div>
                     <div style={{ display: visibilidadLogin}}>
                         <Login

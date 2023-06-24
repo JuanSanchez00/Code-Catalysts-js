@@ -6,11 +6,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mercadopago/sdk-react": "^0.0.12",
+    "@types/mercadopago": "^1.5.8",
+    "axios": "^1.4.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.2.3",
-    "next": "latest",
+    "mercadopago": "^1.5.16",
+    "next": "^13.4.7",
+    "next-transpile-modules": "^10.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "reactstrap": "^9.1.10"
+    "reactstrap": "^9.1.10",
+    "sass": "^1.63.6"
   }
 }
