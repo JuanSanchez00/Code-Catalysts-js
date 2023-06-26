@@ -322,3 +322,21 @@ header {
   .nav-item {
 	margin-left: 10px;
   }
+
+  @media screen and (max-width: 429px) {
+	.container-cart-products {
+		width: 350px;
+	}
+  }
+
+  @media screen and (max-width: 379px) {
+	.container-cart-products {
+		width: 300px;
+	}
+  }
+
+  @media screen and (max-width: 333px) {
+	.container-cart-products {
+		width: 250px;
+	}
+  }

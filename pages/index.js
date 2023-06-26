@@ -31,6 +31,8 @@ export default function FirstPost({camisetas,ligas}) {
     const [idLiga, setIdLiga] = useState("");
     const [idEquipo, setIdEquipo] = useState("");
     const [pedidos, setPedidos] = useState("");
+    const [talle, setTalle] = useState(null);
+    const [mensajeTalle, setMensajeTalle] = useState("Selecciona un talle");
 
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
     const [visibilidadMercadoPago, setVisibilidadMercadoPago] = useState("none");
@@ -126,6 +128,8 @@ export default function FirstPost({camisetas,ligas}) {
                 setAllProducts={setAllProducts}
                 setCountProducts={setCountProducts}
                 setTotal={setTotal}
+                setTalle={setTalle}
+                setMensajeTalle={setMensajeTalle}
                 />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadMercadoPago}}>
@@ -220,6 +224,10 @@ export default function FirstPost({camisetas,ligas}) {
                             setCountProducts={setCountProducts}
                             total={total}
                             setTotal={setTotal}
+                            talle={talle}
+                            setTalle={setTalle}
+                            mensajeTalle={mensajeTalle}
+                            setMensajeTalle={setMensajeTalle}
                         />
                 </div>
             </div>

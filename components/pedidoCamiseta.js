@@ -11,13 +11,18 @@ export default function Camiseta({
 	countProducts,
 	setCountProducts,
     total,
-    setTotal
+    setTotal,
+    talle,
+    setTalle,
+    mensajeTalle,
+    setMensajeTalle
 }) {
 
     let id,imagen,descripcion,precio,talles; 
 
     const [key, setKey] = useState(0);
     
+
     if(camiseta != null){
         id = camiseta.id_camiseta;
         descripcion = camiseta.descripcion;
@@ -25,9 +30,10 @@ export default function Camiseta({
         precio = camiseta.precio;
         talles = camiseta.talles.split(' ');
     }
-    const[talle, setTalle] = useState(null);
     const cambioTalle=e=>{
         setTalle(e.target.value);
+        setMensajeTalle("Talle seleccionado: "+e.target.value);
+        
     }
 
     function agregarAlCarrito() {
@@ -46,7 +52,9 @@ export default function Camiseta({
             setAllProducts([...allProducts,producto]);
             setCountProducts(countProducts + 1);
             setTotal(total + Number(precio));
+            alert("La camiseta "+descripcion+" fue agregada a su carrito.");
             setTalle(null);
+            setMensajeTalle("Selecciona un talle");
         }
     };
 
@@ -64,7 +72,7 @@ export default function Camiseta({
                     <h2 className={styles.precio}>${precio}</h2>
                     <FormGroup>
                         <h4>
-                            Selecciona un talle
+                            {mensajeTalle}
                         </h4>
                         <FormGroup className={styles.formGroupRadios}>
                             {talles.map((talle,index) => (

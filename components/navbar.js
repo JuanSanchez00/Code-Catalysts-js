@@ -33,7 +33,9 @@ export default function NavBar({
   setPedidos,
   setAllProducts,
   setCountProducts,
-  setTotal
+  setTotal,
+  setTalle,
+  setMensajeTalle
 }) {
  useEffect(() => {
     const usuarioGuardado = localStorage.getItem('usuario');
@@ -62,6 +64,8 @@ export default function NavBar({
     setVisibilidadLogin("none");
     setVisibilidadRegister("none");
     setVisibilidadPedidos("none");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
 
   async function handleClickLiga(){
@@ -77,6 +81,8 @@ export default function NavBar({
     setVisibilidadCarrito("block");
     setVisibilidadAtrasLiga("none");
     setVisibilidadAtrasEquipo("none");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
 
   async function handleClickEquipo(){
@@ -91,6 +97,8 @@ export default function NavBar({
     setVisibilidadCarrito("block");
     setVisibilidadAtrasLiga("block");
     setVisibilidadAtrasEquipo("none");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
 
   const handleClickIniciarSesion = () => {
@@ -106,6 +114,8 @@ export default function NavBar({
     setVisibilidadTitulo("block");
     setTitulo("Iniciar sesión");
     setVisibilidadRegister("none");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
 
   const handleClickCerrarSesion = () => {
@@ -117,6 +127,8 @@ export default function NavBar({
     localStorage.removeItem('usuario');
     setVisibilidadCerrarSesion("none");
     setVisibilidadIniciarSesion("block");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
     if (visibilidadPedidos == "block") {
       setCamisetasVisibles(todasLasCamisetas);
       setVisibilidadFiltrarLiga("block");
@@ -148,6 +160,8 @@ export default function NavBar({
     setVisibilidadLogin("none");
     setVisibilidadRegister("none");
     setVisibilidadPedidos("none");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
 
   async function handleClickMisPedidos(){
@@ -165,6 +179,8 @@ export default function NavBar({
     setVisibilidadRegister("none");
     setVisibilidadPedidos("block");
     setTitulo("Mis pedidos");
+    setTalle(null);
+    setMensajeTalle("Selecciona un talle");
   };
   
   return (
