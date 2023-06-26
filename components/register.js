@@ -27,9 +27,10 @@ export default function Register({
             } else {
               try {
                 const validacion = await register(email, contraseña);
-                console.log(validacion);
-                if (validacion.registro) {
-                  alert(validacion.mensaje);
+                //console.log(validacion);
+                if (validacion) {
+                  //alert(validacion.mensaje);
+                  alert("Usuario registrado correctamente");
                   localStorage.setItem("usuario", email);
                   setContraseña('');
                   setEmail('');
@@ -42,14 +43,16 @@ export default function Register({
                   setVisibilidadCerrarSesion("block");
                   setCamisetasVisibles(todasLasCamisetas);
                 } else {
-                  alert(validacion.mensaje);
+                  //alert(validacion.mensaje);
+                  alert("Debe ingresar una contraseña valida");
                 }
               } catch (error) {
-                console.error('Error al registrar:', error);
+                //console.error('Error al registrar:', error);
                 alert("Error al registrar. Por favor, intenta nuevamente.");
               }
             }
           } else {
+            //alert("Debe ingresar un correo electrónico válido.");
             alert("Debe ingresar un correo electrónico válido.");
           }
         }

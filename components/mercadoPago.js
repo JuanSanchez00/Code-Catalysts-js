@@ -1,15 +1,16 @@
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
 
 export default function MercadoPago({total}) {
-    initMercadoPago('TEST-9dbee4e1-1184-45bb-a452-9278c1f6e7cd');
+    initMercadoPago('TEST-d9fbc7c1-c76a-4e0a-bcd0-2a74330f9401');
     const initialization = {
         amount: total
     };
 
     const onSubmit = async (formData) => {
     // callback llamado al hacer clic en el botón enviar datos
-    return new Promise((resolve, reject) => {
-        fetch("/process_payment", {
+    //console.log(JSON.stringify(formData));
+    /*return new Promise((resolve, reject) => {
+        fetch("http://localhost/Garcia-Sanchez-laravel/public/rest/process_payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +27,7 @@ export default function MercadoPago({total}) {
             // manejar la respuesta de error al intentar crear el pago
             reject();
         });
-    });
+    });*/
     };
     const onError = async (error) => {
         // callback llamado para todos los casos de error de Brick

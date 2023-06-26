@@ -46,10 +46,10 @@ export default function Header ({
                     json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
                 }
             });
-            setVisibilidadMercadoPago("block")
-            //registrarPedido(json,usuario);
-            //vaciarCarrito();
-            //alert("Su compra se ha realizado con éxito.");
+            //setVisibilidadMercadoPago("block")
+            registrarPedido(json,usuario);
+            vaciarCarrito();
+            alert("Su compra se ha realizado con éxito.");
         }
 	};
 

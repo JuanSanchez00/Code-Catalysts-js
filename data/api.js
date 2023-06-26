@@ -97,7 +97,7 @@ export async function register(email, contraseña) {
   const json = '{ "email": "'+email+'", "password": "'+contraseña+'"}';
   
   try {
-    const response = await fetch(`http://localhost:3000/api/v1/register`, {
+    const response = await fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/register`, {
       method: 'POST', 
       mode: 'cors', 
       headers: {
@@ -114,13 +114,14 @@ export async function register(email, contraseña) {
     } else {
       registro = false;
     }
-    return {
+    /*return {
       mensaje: mensaje,
       registro: registro
-    }
+    }*/
+    return registro;
   } catch (error) {
     console.error('Error en la petición de registro:', error);
-    return false;
+    return registro;
   }
 }
 
