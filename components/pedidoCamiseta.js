@@ -2,7 +2,7 @@ import styles from './pedidoCamiseta.module.css';
 import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {FormGroup, Label, Input} from 'reactstrap';
-
+import { useEffect } from 'react';
 
 export default function Camiseta({
     camiseta,
@@ -21,6 +21,19 @@ export default function Camiseta({
     let id,imagen,descripcion,precio,talles; 
 
     const [key, setKey] = useState(0);
+
+    //al iniciar la pagina carga en key lo que esta en el key de localStorage
+    useEffect(() => {
+        const keyObtenida = localStorage.getItem('key');
+        if (keyObtenida) {
+            setKey(Number(keyObtenida));
+        }
+      }, []);
+
+    //cada vez que key se actualiza, su contenido se guarda en el key de localStorage
+    useEffect(() => {
+        localStorage.setItem('key', Number(key));
+        }, [key]);
     
 
     if(camiseta != null){
