@@ -34,6 +34,7 @@ export default function Header ({
 
     const finalizarCompra = () => {
         const usuario = localStorage.getItem("usuario");
+        const token = localStorage.getItem("token");
         if (usuario == '' || usuario == null) {
             alert("Antes de finalizar la compra debe iniciar sesion.");
         }
@@ -47,7 +48,7 @@ export default function Header ({
                 }
             });
             //setVisibilidadMercadoPago("block")
-            registrarPedido(json,usuario);
+            registrarPedido(json,usuario,token);
             vaciarCarrito();
             alert("Su compra se ha realizado con éxito.");
         }

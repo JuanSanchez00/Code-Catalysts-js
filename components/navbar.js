@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga, getMisPedidos } from "../data/api";
+import { getCamisetasPorEquipo, getCamisetasPorLiga, getEquiposPorLiga, getMisPedidos, logout } from "../data/api";
 
 export default function NavBar({
   setVisibilidadFiltrarLiga,
@@ -118,32 +118,40 @@ export default function NavBar({
     setMensajeTalle("Selecciona un talle");
   };
 
-  const handleClickCerrarSesion = () => {
-    alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
-    setAllProducts([]);
-    setCountProducts(0);
-    setTotal(0);
-    setPedidos("");
-    localStorage.removeItem('usuario');
-    setVisibilidadCerrarSesion("none");
-    setVisibilidadIniciarSesion("block");
-    setTalle(null);
-    setMensajeTalle("Selecciona un talle");
-    if (visibilidadPedidos == "block") {
-      setCamisetasVisibles(todasLasCamisetas);
-      setVisibilidadFiltrarLiga("block");
-      setVisibilidadFiltrarEquipo("none");
-      setVisibilidadCarrusel("none"); 
-      setVisibilidadCamisetas("block");
-      setVisibilidadTitulo("block");
-      setVisibilidadCamisetaActual("none");
-      setTitulo("Todas las camisetas");
-      setVisibilidadCarrito("block");
-      setVisibilidadAtrasLiga("none");
-      setVisibilidadAtrasEquipo("none");
-      setVisibilidadLogin("none");
-      setVisibilidadRegister("none");
-      setVisibilidadPedidos("none");
+  async function handleClickCerrarSesion() {
+    const email = localStorage.getItem('usuario');
+    const token = localStorage.getItem('token');
+    if (await logout(email,token)) {
+      alert("Se ha cerrado la sesión de "+localStorage.getItem("usuario"));
+      setAllProducts([]);
+      setCountProducts(0);
+      setTotal(0);
+      setPedidos("");
+      localStorage.removeItem('usuario');
+      localStorage.removeItem('token');
+      setVisibilidadCerrarSesion("none");
+      setVisibilidadIniciarSesion("block");
+      setTalle(null);
+      setMensajeTalle("Selecciona un talle");
+      if (visibilidadPedidos == "block") {
+        setCamisetasVisibles(todasLasCamisetas);
+        setVisibilidadFiltrarLiga("block");
+        setVisibilidadFiltrarEquipo("none");
+        setVisibilidadCarrusel("none"); 
+        setVisibilidadCamisetas("block");
+        setVisibilidadTitulo("block");
+        setVisibilidadCamisetaActual("none");
+        setTitulo("Todas las camisetas");
+        setVisibilidadCarrito("block");
+        setVisibilidadAtrasLiga("none");
+        setVisibilidadAtrasEquipo("none");
+        setVisibilidadLogin("none");
+        setVisibilidadRegister("none");
+        setVisibilidadPedidos("none");
+      }
+    }
+    else {
+      alert("Ocurrió un error al cerrar sesión.");
     }
   };
 
@@ -165,7 +173,9 @@ export default function NavBar({
   };
 
   async function handleClickMisPedidos(){
-    setPedidos(await getMisPedidos(localStorage.getItem("usuario")));
+    const email = localStorage.getItem('usuario');
+    const token = localStorage.getItem('token');
+    setPedidos(await getMisPedidos(email,token));
     setVisibilidadFiltrarLiga("none");
     setVisibilidadFiltrarEquipo("none")
     setVisibilidadCarrusel("none"); 

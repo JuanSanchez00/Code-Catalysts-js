@@ -25,13 +25,14 @@ export default function Login({
             if (contraseña == null) {
               alert("Por favor ingrese su contraseña.");
             } else {
-              // Hacer post al login de la API
+              
               try {
                 const validacion = await login(email, contraseña);
       
-                if (validacion) {
+                if (validacion.login) {
                   alert("Ha iniciado sesión correctamente como " + email);
                   localStorage.setItem("usuario", email);
+                  localStorage.setItem("token", validacion.token);
       
                   setVisibilidadLogin("none");
                   setVisibilidadCamisetas("block");
