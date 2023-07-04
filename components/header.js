@@ -32,7 +32,7 @@ export default function Header ({
         setTotal(0);
 	};
 
-    const finalizarCompra = () => {
+    const finalizarCompra = async () => {
         const usuario = localStorage.getItem("usuario");
         const token = localStorage.getItem("token");
         if (usuario == '' || usuario == null) {
@@ -48,9 +48,14 @@ export default function Header ({
                 }
             });
             //setVisibilidadMercadoPago("block")
-            registrarPedido(json,usuario,token);
-            vaciarCarrito();
-            alert("Su compra se ha realizado con éxito.");
+            const pedido = await registrarPedido(json,usuario,token);
+            if (pedido == null) {
+                alert("Ocurrió un error al finalizar la compra.")
+            }
+            else {
+                vaciarCarrito();
+                alert("Su compra se ha realizado con éxito.");
+            }
         }
 	};
 

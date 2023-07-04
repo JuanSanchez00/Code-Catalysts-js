@@ -27,7 +27,6 @@ export default function Register({
             } else {
               try {
                 const validacion = await register(email, contraseña);
-                //console.log(validacion);
                 if (validacion.registro) {
                   alert("Usuario registrado correctamente");
                   localStorage.setItem("usuario", email);
@@ -43,8 +42,7 @@ export default function Register({
                   setVisibilidadCerrarSesion("block");
                   setCamisetasVisibles(todasLasCamisetas);
                 } else {
-                  //ESTA MAL EL MENSAJE
-                  alert("Debe ingresar una contraseña valida");
+                  alert("Hay un error en las credenciales.");
                 }
               } catch (error) {
                 alert("Error al registrar. Por favor, intenta nuevamente.");
@@ -63,6 +61,7 @@ export default function Register({
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example2">Constraseña</label>
+                <p className="mensajePassword">La contraseña debe contener al menos 8 caracteres y 1 número.</p>
                 <input type="password" id="form2Example2" class="form-control" value={contraseña} onChange={(e) => setContraseña(e.target.value)}/>
             </div>
             <button type="button" class="btn btn-primary btn-block mb-4" onClick={handleClickRegistrarse}>Ingresar</button>

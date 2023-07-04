@@ -175,22 +175,28 @@ export default function NavBar({
   async function handleClickMisPedidos(){
     const email = localStorage.getItem('usuario');
     const token = localStorage.getItem('token');
-    setPedidos(await getMisPedidos(email,token));
-    setVisibilidadFiltrarLiga("none");
-    setVisibilidadFiltrarEquipo("none")
-    setVisibilidadCarrusel("none"); 
-    setVisibilidadCamisetas("none");
-    setVisibilidadTitulo("block");
-    setVisibilidadCamisetaActual("none");
-    setVisibilidadCarrito("block");
-    setVisibilidadAtrasLiga("none");
-    setVisibilidadAtrasEquipo("none");
-    setVisibilidadLogin("none");
-    setVisibilidadRegister("none");
-    setVisibilidadPedidos("block");
-    setTitulo("Mis pedidos");
-    setTalle(null);
-    setMensajeTalle("Selecciona un talle");
+    const pedidos = await getMisPedidos(email,token);
+    if (pedidos == null) {
+      alert("Ocurrió un error al obtener sus pedidos.")
+    }
+    else {
+      setPedidos(pedidos);
+      setVisibilidadFiltrarLiga("none");
+      setVisibilidadFiltrarEquipo("none")
+      setVisibilidadCarrusel("none"); 
+      setVisibilidadCamisetas("none");
+      setVisibilidadTitulo("block");
+      setVisibilidadCamisetaActual("none");
+      setVisibilidadCarrito("block");
+      setVisibilidadAtrasLiga("none");
+      setVisibilidadAtrasEquipo("none");
+      setVisibilidadLogin("none");
+      setVisibilidadRegister("none");
+      setVisibilidadPedidos("block");
+      setTitulo("Mis pedidos");
+      setTalle(null);
+      setMensajeTalle("Selecciona un talle");}
+    
   };
   
   return (

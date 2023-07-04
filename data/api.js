@@ -57,22 +57,33 @@ export async function getEquipoPorID(id) {
 
 export async function registrarPedido(camisetas, email, token) {
   const json = '{ "email": "'+email+'", "token": "'+token+'","camisetas": ['+camisetas+']}';
-  console.log(json);
-  fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedido`, {
+  try {
+    const response = await fetch(`http://localhost:8000/rest/pedido`, {
       method: 'POST', 
       mode: 'cors', 
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: json, // body data type must match "Content-Type" header
-    })
+      body: json,
+    });
+    const pedidos = await response.json();
+    if (response.ok) {
+      return pedidos;
+    }
+    else {
+      return null;
+    }
+  }
+  catch (error) {
+    return null;
+  }
 }
 
 export async function login(email, contraseña) {
   const json = { email: email, password: contraseña };
 
   try {
-    const response = await fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/login', {
+    const response = await fetch('http://localhost:8000/rest/login', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -102,7 +113,7 @@ export async function logout(email, token) {
   const json = { email: email, token: token };
 
   try {
-    const response = await fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/logout', {
+    const response = await fetch('http://localhost:8000/rest/logout', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -126,7 +137,7 @@ export async function register(email, contraseña) {
   const json = '{ "email": "'+email+'", "password": "'+contraseña+'"}';
   
   try {
-    const response = await fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/register`, {
+    const response = await fetch(`http://localhost:8000/rest/register`, {
       method: 'POST', 
       mode: 'cors', 
       headers: {
@@ -144,7 +155,7 @@ export async function register(email, contraseña) {
     }
     return {
       registro: registro,
-      token: data.token
+      token: data.token,
     }
   } catch (error) {
     console.error('Error en la petición de registro:', error);
@@ -153,8 +164,19 @@ export async function register(email, contraseña) {
 }
 
 export async function getMisPedidos(email,token) {
-  const pedidos = await fetch(
-    `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedidos?email=${email}&token=${token}`
-  ).then((response) => response.json());
-  return pedidos;
+  try {
+    const response = await fetch(
+      `http://localhost:8000/rest/pedidos?email=${email}&token=${token}`
+    );
+    const pedidos = await response.json();
+    if (response.ok) {
+      return pedidos;
+    }
+    else {
+      return null;
+    }
+  }
+  catch (error) {
+    return null;
+  }
 }
