@@ -10,10 +10,14 @@ export default function Header ({
     setTotal,
     titulo,
     visibilidadTitulo,
-    setVisibilidadMercadoPago
-}) {
-    let json;
-    
+    setVisibilidadMercadoPago,
+    setVisibilidadCamisetaActual,
+    setVisibilidadCamisetas,
+    setVisibilidadFiltrarLiga,
+    setVisibilidadFiltrarEquipo,
+    setTitulo,
+    setVisibilidadCarrito
+}) {    
     const [active, setActive] = useState(false);
     
     const eliminarCamiseta = product => {
@@ -34,28 +38,26 @@ export default function Header ({
 
     const finalizarCompra = async () => {
         const usuario = localStorage.getItem("usuario");
-        const token = localStorage.getItem("token");
         if (usuario == '' || usuario == null) {
             alert("Antes de finalizar la compra debe iniciar sesion.");
         }
         else {
-            allProducts.forEach((producto, index) => {
-                if (index === 0) {
-                    json = '{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                } 
-                else {
-                    json = json + ',{"id_camiseta": '+producto.id+',"talle": "'+producto.talle+'"}';
-                }
-            });
-            //setVisibilidadMercadoPago("block")
-            const pedido = await registrarPedido(json,usuario,token);
+            // Mostrar solo mp
+            setVisibilidadMercadoPago("block")
+            setVisibilidadCamisetaActual("none");
+            setVisibilidadCamisetas("none");
+            setVisibilidadFiltrarLiga("none");
+            setTitulo("");
+            setVisibilidadFiltrarEquipo("none");
+            setVisibilidadCarrito("none");
+            /*const pedido = await registrarPedido(json,usuario,token);
             if (pedido == null) {
                 alert("Ocurrió un error al finalizar la compra.")
             }
             else {
                 vaciarCarrito();
                 alert("Su compra se ha realizado con éxito.");
-            }
+            }*/
         }
 	};
 

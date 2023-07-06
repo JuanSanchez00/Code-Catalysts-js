@@ -76,7 +76,7 @@ export default function Camiseta({
             <div className={styles.contenedorPrincipal}>
                 <img
                     className={styles.imagen}
-                    src={imagen}
+                    src={"data:image/jpg;base64," + imagen}
                     width={400}
                     height={400}
                 />

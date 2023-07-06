@@ -134,7 +134,18 @@ export default function FirstPost({camisetas,ligas}) {
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadMercadoPago}}>
                     <MercadoPago
-                        total={total} 
+                        allProducts={allProducts}
+                        setAllProducts={setAllProducts}
+                        total={total}
+                        setVisibilidadMercadoPago={setVisibilidadMercadoPago}
+                        setVisibilidadCamisetas={setVisibilidadCamisetas}
+                        setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga}
+                        setTitulo={setTitulo}
+                        setVisibilidadCarrito={setVisibilidadCarrito}
+                        setTotal={setTotal}
+                        setCountProducts={setCountProducts}
+                        setVisibilidadAtrasEquipo={setVisibilidadAtrasEquipo}
+                        setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
                     />
                 </div>
                 <div style={{ display: visibilidadCarrito}}>
@@ -147,7 +158,13 @@ export default function FirstPost({camisetas,ligas}) {
                         setTotal={setTotal}
                         titulo={titulo}
                         visibilidadTitulo={visibilidadTitulo}
-                        setVisibilidadMercadoPago={setVisibilidadMercadoPago} />
+                        setVisibilidadMercadoPago={setVisibilidadMercadoPago} 
+                        setVisibilidadCamisetaActual={setVisibilidadCamisetaActual}
+                        setVisibilidadCamisetas={setVisibilidadCamisetas}
+                        setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga}
+                        setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo}
+                        setTitulo={setTitulo}
+                        setVisibilidadCarrito={setVisibilidadCarrito} />
                 </div>
                     <div style={{ display: visibilidadLogin}}>
                         <Login

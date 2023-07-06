@@ -8,7 +8,7 @@ export default function Camiseta(props) {
     return (
         <div className={styles.contenedor}>  
             <img                
-                src={imagen}
+                src={"data:image/jpg;base64," + imagen}
                 width={100}
                 height={100}
             />

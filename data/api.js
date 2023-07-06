@@ -58,7 +58,7 @@ export async function getEquipoPorID(id) {
 export async function registrarPedido(camisetas, email, token) {
   const json = '{ "email": "'+email+'", "token": "'+token+'","camisetas": ['+camisetas+']}';
   try {
-    const response = await fetch(`http://localhost:8000/rest/pedido`, {
+    const response = await fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedido`, {
       method: 'POST', 
       mode: 'cors', 
       headers: {
@@ -83,7 +83,7 @@ export async function login(email, contraseña) {
   const json = { email: email, password: contraseña };
 
   try {
-    const response = await fetch('http://localhost:8000/rest/login', {
+    const response = await fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/login', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -113,7 +113,7 @@ export async function logout(email, token) {
   const json = { email: email, token: token };
 
   try {
-    const response = await fetch('http://localhost:8000/rest/logout', {
+    const response = await fetch('https://garcia-sanchez-laravel-genaro08.vercel.app/rest/logout', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -137,7 +137,7 @@ export async function register(email, contraseña) {
   const json = '{ "email": "'+email+'", "password": "'+contraseña+'"}';
   
   try {
-    const response = await fetch(`http://localhost:8000/rest/register`, {
+    const response = await fetch(`https://garcia-sanchez-laravel-genaro08.vercel.app/rest/register`, {
       method: 'POST', 
       mode: 'cors', 
       headers: {
@@ -166,7 +166,7 @@ export async function register(email, contraseña) {
 export async function getMisPedidos(email,token) {
   try {
     const response = await fetch(
-      `http://localhost:8000/rest/pedidos?email=${email}&token=${token}`
+      `https://garcia-sanchez-laravel-genaro08.vercel.app/rest/pedidos?email=${email}&token=${token}`
     );
     const pedidos = await response.json();
     if (response.ok) {
