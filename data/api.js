@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { OPENAI_API_KEY } from '../constantes';
+
 export async function getCamisetas() {
   const camisetas = await fetch(
     'https://garcia-sanchez-laravel-genaro08.vercel.app/rest/camisetas'
@@ -180,3 +183,26 @@ export async function getMisPedidos(email,token) {
     return null;
   }
 }
+
+export async function obtenerRespuestaChatGPT(mensaje) {
+  const url = 'https://api.openai.com/v1/chat/completions';
+  const apiKey = OPENAI_API_KEY;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`,
+  };
+
+  const data = {
+    model: 'gpt-3.5-turbo',
+    messages: [{ role: 'user', content: mensaje }],
+    temperature: 0.7,
+  };
+
+  try {
+    const respuesta = await axios.post(url, data, { headers });
+    return respuesta.data.choices[0].message.content;
+  } catch (error) {
+    return 'Error al obtener la respuesta de ChatGPT.';
+  }
+};

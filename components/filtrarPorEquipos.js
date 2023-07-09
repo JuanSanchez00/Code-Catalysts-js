@@ -6,7 +6,9 @@ export default function Index({
   setVisibilidadFiltrarEquipo,
   setTitulo,
   setVisibilidadAtrasLiga,
-  setTituloLiga
+  setTituloLiga,
+  setBusquedaChatGPT,
+  setRespuestaChatGPT
 }) {
   
   async function handleClickEquipos (equipo){
@@ -16,6 +18,8 @@ export default function Index({
     setVisibilidadFiltrarEquipo("none");
     setTitulo("Camisetas de "+equipo.nombre);
     setTituloLiga(equipo.liga);
+    setBusquedaChatGPT(equipo.nombre);
+    setRespuestaChatGPT('');
   }
 
   return (

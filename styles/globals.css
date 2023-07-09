@@ -344,3 +344,44 @@ header {
 		width: 250px;
 	}
   }
+
+.contenedorChatGPT {
+	width: 98%;
+	background-color: #353740;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 20px auto;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tituloChatGPT {
+	font-size: 18px;
+  	margin-bottom: 10px;
+}
+
+.respuestaChatGPT {
+	background-color: #444654;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	color: #fff;
+	font-family: "Roboto", sans-serif;
+}
+
+.botonChatGPT {
+	background-color: #19c37d;
+	color: #fff;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.botonChatGPT:hover {
+	background-color: #2ADC93;
+}
+  
+.botonChatGPT:focus {
+	outline: none;
+}

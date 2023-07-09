@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { registrarPedido } from "../data/api";
 
 export default function Header ({
 	allProducts,
@@ -16,7 +15,9 @@ export default function Header ({
     setVisibilidadFiltrarLiga,
     setVisibilidadFiltrarEquipo,
     setTitulo,
-    setVisibilidadCarrito
+    setVisibilidadCarrito,
+    setVisibilidadChatGPT,
+    setRespuestaChatGPT
 }) {    
     const [active, setActive] = useState(false);
     
@@ -50,6 +51,8 @@ export default function Header ({
             setTitulo("");
             setVisibilidadFiltrarEquipo("none");
             setVisibilidadCarrito("none");
+            setVisibilidadChatGPT("none");
+            setRespuestaChatGPT('');
             /*const pedido = await registrarPedido(json,usuario,token);
             if (pedido == null) {
                 alert("Ocurrió un error al finalizar la compra.")

@@ -14,7 +14,8 @@ const ConjuntoCamisetas = ({
     setTituloLiga,
     setTituloEquipo,
     setIdLiga,
-    setIdEquipo
+    setIdEquipo,
+    setVisibilidadChatGPT
 }) => {
   
   async function handleClickCambiarCamiseta (camiseta){
@@ -29,7 +30,8 @@ const ConjuntoCamisetas = ({
     setTituloLiga(camiseta.liga);
     setTituloEquipo(camiseta.equipo);
     setIdLiga(camiseta.id_liga);
-    setIdEquipo(camiseta.id_equipo)
+    setIdEquipo(camiseta.id_equipo);
+    setVisibilidadChatGPT("none");
   }
   
   if (camisetas != null) {

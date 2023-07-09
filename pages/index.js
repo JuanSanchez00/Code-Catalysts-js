@@ -11,6 +11,7 @@ import Login from '../components/login';
 import Register from '../components/register';
 import Pedidos from '../components/pedidos';
 import MercadoPago from '../components/mercadoPago';
+import ChatGPT from '../components/chatGPT';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState } from "react";
@@ -19,6 +20,9 @@ import { useEffect } from 'react';
 
 export default function FirstPost({camisetas,ligas}) {
     
+    const [busquedaChatGPT, setBusquedaChatGPT] = useState('');
+    const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
+    const [visibilidadChatGPT, setVisibilidadChatGPT] = useState("none");
     const [allProducts, setAllProducts] = useState([]);
 	const [countProducts, setCountProducts] = useState(0);
     const [total, setTotal] = useState(0);
@@ -130,6 +134,9 @@ export default function FirstPost({camisetas,ligas}) {
                 setTotal={setTotal}
                 setTalle={setTalle}
                 setMensajeTalle={setMensajeTalle}
+                setVisibilidadChatGPT={setVisibilidadChatGPT}
+                setRespuestaChatGPT={setRespuestaChatGPT}
+                setBusquedaChatGPT={setBusquedaChatGPT}
                 />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadMercadoPago}}>
@@ -164,7 +171,9 @@ export default function FirstPost({camisetas,ligas}) {
                         setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga}
                         setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo}
                         setTitulo={setTitulo}
-                        setVisibilidadCarrito={setVisibilidadCarrito} />
+                        setVisibilidadCarrito={setVisibilidadCarrito}
+                        setVisibilidadChatGPT={setVisibilidadChatGPT}
+                        setRespuestaChatGPT={setRespuestaChatGPT} />
                 </div>
                     <div style={{ display: visibilidadLogin}}>
                         <Login
@@ -197,6 +206,12 @@ export default function FirstPost({camisetas,ligas}) {
                     <div style={{ display: visibilidadCarrusel}}>
                         <Carousel/>
                     </div>
+                    <div style={{ display: visibilidadChatGPT}}>
+                        <ChatGPT
+                            busquedaChatGPT={busquedaChatGPT}
+                            respuestaChatGPT={respuestaChatGPT}
+                            setRespuestaChatGPT={setRespuestaChatGPT}/>
+                    </div>
                     <div style={{ display: visibilidadFiltrarLiga }}>
                         <FiltrarPorLigas 
                             ligas={ligas} 
@@ -205,7 +220,10 @@ export default function FirstPost({camisetas,ligas}) {
                             setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
                             setEquiposVisibles={setEquiposVisibles} 
                             setTitulo={setTitulo} 
-                            setIdLiga={setIdLiga} />
+                            setIdLiga={setIdLiga}
+                            setBusquedaChatGPT={setBusquedaChatGPT}
+                            setRespuestaChatGPT={setRespuestaChatGPT}
+                            setVisibilidadChatGPT={setVisibilidadChatGPT} />
                     </div>
                     <div style={{ display: visibilidadFiltrarEquipo }}>
                         <FiltrarPorEquipos  
@@ -214,7 +232,9 @@ export default function FirstPost({camisetas,ligas}) {
                             setVisibilidadFiltrarEquipo={setVisibilidadFiltrarEquipo} 
                             setTitulo={setTitulo}
                             setVisibilidadAtrasLiga={setVisibilidadAtrasLiga}
-                            setTituloLiga={setTituloLiga} />
+                            setTituloLiga={setTituloLiga}
+                            setBusquedaChatGPT={setBusquedaChatGPT}
+                            setRespuestaChatGPT={setRespuestaChatGPT} />
                     </div>
                     <div style={{ display: visibilidadCamisetas }} >
                         <ConjuntoCamisetas 
@@ -230,7 +250,8 @@ export default function FirstPost({camisetas,ligas}) {
                             setTituloLiga={setTituloLiga} 
                             setTituloEquipo={setTituloEquipo}
                             setIdLiga={setIdLiga}
-                            setIdEquipo={setIdEquipo} />
+                            setIdEquipo={setIdEquipo}
+                            setVisibilidadChatGPT={setVisibilidadChatGPT} />
                     </div>
                     <div style={{ display: visibilidadCamisetaActual }}>
                         <Camiseta 

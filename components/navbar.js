@@ -35,7 +35,10 @@ export default function NavBar({
   setCountProducts,
   setTotal,
   setTalle,
-  setMensajeTalle
+  setMensajeTalle,
+  setVisibilidadChatGPT,
+  setRespuestaChatGPT,
+  setBusquedaChatGPT
 }) {
  useEffect(() => {
     const usuarioGuardado = localStorage.getItem('usuario');
@@ -66,6 +69,8 @@ export default function NavBar({
     setVisibilidadPedidos("none");
     setTalle(null);
     setMensajeTalle("Selecciona un talle");
+    setVisibilidadChatGPT("none");
+    setRespuestaChatGPT('');
   };
 
   async function handleClickLiga(){
@@ -83,6 +88,9 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
     setTalle(null);
     setMensajeTalle("Selecciona un talle");
+    setBusquedaChatGPT(tituloLiga);
+    setVisibilidadChatGPT("block");
+    setRespuestaChatGPT('');
   };
 
   async function handleClickEquipo(){
@@ -99,6 +107,8 @@ export default function NavBar({
     setVisibilidadAtrasEquipo("none");
     setTalle(null);
     setMensajeTalle("Selecciona un talle");
+    setBusquedaChatGPT(tituloEquipo);
+    setVisibilidadChatGPT("block");
   };
 
   const handleClickIniciarSesion = () => {
@@ -116,6 +126,8 @@ export default function NavBar({
     setVisibilidadRegister("none");
     setTalle(null);
     setMensajeTalle("Selecciona un talle");
+    setVisibilidadChatGPT("none");
+    setRespuestaChatGPT('');
   };
 
   async function handleClickCerrarSesion() {
@@ -133,6 +145,8 @@ export default function NavBar({
       setVisibilidadIniciarSesion("block");
       setTalle(null);
       setMensajeTalle("Selecciona un talle");
+      setVisibilidadChatGPT("none");
+      setRespuestaChatGPT('');
       if (visibilidadPedidos == "block") {
         setCamisetasVisibles(todasLasCamisetas);
         setVisibilidadFiltrarLiga("block");
@@ -170,6 +184,8 @@ export default function NavBar({
     setVisibilidadPedidos("none");
     setTalle(null);
     setMensajeTalle("Selecciona un talle");
+    setVisibilidadChatGPT("none");
+    setRespuestaChatGPT('');
   };
 
   async function handleClickMisPedidos(){
@@ -180,6 +196,8 @@ export default function NavBar({
       alert("Ocurrió un error al obtener sus pedidos.")
     }
     else {
+      setVisibilidadChatGPT("none");
+      setRespuestaChatGPT('');
       setPedidos(pedidos);
       setVisibilidadFiltrarLiga("none");
       setVisibilidadFiltrarEquipo("none")
