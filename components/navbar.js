@@ -38,7 +38,8 @@ export default function NavBar({
   setMensajeTalle,
   setVisibilidadChatGPT,
   setRespuestaChatGPT,
-  setBusquedaChatGPT
+  setBusquedaChatGPT,
+  setVisibilidadMercadoPago
 }) {
  useEffect(() => {
     const usuarioGuardado = localStorage.getItem('usuario');
@@ -71,6 +72,7 @@ export default function NavBar({
     setMensajeTalle("Selecciona un talle");
     setVisibilidadChatGPT("none");
     setRespuestaChatGPT('');
+    setVisibilidadMercadoPago("none");
   };
 
   async function handleClickLiga(){
@@ -91,6 +93,7 @@ export default function NavBar({
     setBusquedaChatGPT(tituloLiga);
     setVisibilidadChatGPT("block");
     setRespuestaChatGPT('');
+    setVisibilidadMercadoPago("none");
   };
 
   async function handleClickEquipo(){
@@ -109,6 +112,7 @@ export default function NavBar({
     setMensajeTalle("Selecciona un talle");
     setBusquedaChatGPT(tituloEquipo);
     setVisibilidadChatGPT("block");
+    setVisibilidadMercadoPago("none");
   };
 
   const handleClickIniciarSesion = () => {
@@ -162,6 +166,7 @@ export default function NavBar({
         setVisibilidadLogin("none");
         setVisibilidadRegister("none");
         setVisibilidadPedidos("none");
+        setVisibilidadMercadoPago("none");
       }
     }
     else {
@@ -186,6 +191,7 @@ export default function NavBar({
     setMensajeTalle("Selecciona un talle");
     setVisibilidadChatGPT("none");
     setRespuestaChatGPT('');
+    setVisibilidadMercadoPago("none");
   };
 
   async function handleClickMisPedidos(){
@@ -214,7 +220,7 @@ export default function NavBar({
       setTitulo("Mis pedidos");
       setTalle(null);
       setMensajeTalle("Selecciona un talle");}
-    
+      setVisibilidadMercadoPago("none");
   };
   
   return (

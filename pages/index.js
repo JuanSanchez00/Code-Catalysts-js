@@ -22,7 +22,6 @@ export default function FirstPost({camisetas,ligas}) {
     
     const [busquedaChatGPT, setBusquedaChatGPT] = useState('');
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
-    const [visibilidadChatGPT, setVisibilidadChatGPT] = useState("none");
     const [allProducts, setAllProducts] = useState([]);
 	const [countProducts, setCountProducts] = useState(0);
     const [total, setTotal] = useState(0);
@@ -38,6 +37,7 @@ export default function FirstPost({camisetas,ligas}) {
     const [talle, setTalle] = useState(null);
     const [mensajeTalle, setMensajeTalle] = useState("Selecciona un talle");
 
+    const [visibilidadChatGPT, setVisibilidadChatGPT] = useState("none");
     const [visibilidadCarrusel, setVisibilidadCarrusel] = useState("block");
     const [visibilidadMercadoPago, setVisibilidadMercadoPago] = useState("none");
     const [visibilidadLogin, setVisibilidadLogin] = useState("none");
@@ -137,6 +137,7 @@ export default function FirstPost({camisetas,ligas}) {
                 setVisibilidadChatGPT={setVisibilidadChatGPT}
                 setRespuestaChatGPT={setRespuestaChatGPT}
                 setBusquedaChatGPT={setBusquedaChatGPT}
+                setVisibilidadMercadoPago={setVisibilidadMercadoPago}
                 />
             <div className='contenedorBody'>
                 <div style={{ display: visibilidadMercadoPago}}>

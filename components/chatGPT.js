@@ -18,7 +18,9 @@ const ChatGPT = ({busquedaChatGPT,respuestaChatGPT,setRespuestaChatGPT}) => {
   return (
     <div className='contenedorChatGPT'>
       <h1 class='tituloChatGPT'>Información de ChatGPT sobre {busquedaChatGPT}</h1>
-      <p className='respuestaChatGPT'>{respuestaChatGPT}</p>
+      {respuestaChatGPT !== '' && (
+        <p className='respuestaChatGPT'>{respuestaChatGPT}</p>
+      )}
       {respuestaChatGPT === '' && (
         <button className='botonChatGPT' onClick={enviarMensaje}>Obtener</button>
       )}
