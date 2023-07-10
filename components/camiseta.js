@@ -11,6 +11,7 @@ export default function Camiseta(props) {
                 src={"data:image/jpg;base64," + imagen}
                 width={100}
                 height={100}
+                alt={'Camiseta ' + descripcion}
             />
             <p className={styles.descripcion}>{descripcion}</p>
             <p className={styles.precio}>${precio}</p>

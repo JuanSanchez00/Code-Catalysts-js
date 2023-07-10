@@ -79,6 +79,7 @@ export default function Camiseta({
                     src={"data:image/jpg;base64," + imagen}
                     width={400}
                     height={400}
+                    alt={'Camiseta ' + descripcion}
                 />
                 <div className={styles.contenedorSecundario}>
                     <h2 className={styles.descripcion}>{descripcion}</h2>
