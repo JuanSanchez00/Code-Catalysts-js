@@ -99,6 +99,8 @@ export default function FirstPost({camisetas,ligas}) {
             <Head>
                 <title>La Camiseta No Se Mancha</title>
                 <link rel="icon" href="https://i.ibb.co/7WBsHrf/Logo.png" />
+                <script  src="/regist_serviceWorker.js"></script> 
+                <link rel="manifest" href="/manifest.json" />
             </Head>
             <NavBar 
                 setVisibilidadFiltrarLiga={setVisibilidadFiltrarLiga} 
