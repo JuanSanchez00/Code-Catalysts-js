@@ -23,6 +23,9 @@ Los usuarios que deseen comprar camisetas deberán loguearse en la aplicación w
 
 Para la implementación del login/register validamos las credenciales del usuario con el servidor. Si éstas son válidas, el servidor provee un token que identifica la sesión activa del usuario. Luego, cuando éste realiza un pedido o recupera sus pedidos, se le debe proporcionar un token al servidor, que chequea que esté asociado al usuario. De esta forma, solo los usuarios autenticados pueden realizar dichas acciones. Además, permite que un mismo usuario pueda tener varias sesiones activas en diferentes dispositivos.
 
+#### Uso de localStorage
+Se utilizó localStorage para permitir que al recargar la página se mantenga la sesión del usuario y el carrito de productos.
+
 #### Mercado Pago
 Los usuarios pueden abonar los pagos de sus pedidos a través de Mercado Pago.
 Para esto integramos [Checkout Bricks - Card Payment Brick](https://www.mercadopago.com.ar/developers/es/docs/checkout-bricks/card-payment-brick/introduction).
