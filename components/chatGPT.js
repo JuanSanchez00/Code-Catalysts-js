@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
 import { obtenerRespuestaChatGPT } from "../data/api";
 
-const ChatGPT = ({busquedaChatGPT,respuestaChatGPT,setRespuestaChatGPT}) => {
+const ChatGPT = ({busquedaChatGPT}) => {
+
+  const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
 
   const enviarMensaje = async () => {
     let respuesta;

@@ -3,24 +3,22 @@ import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import {FormGroup, Label, Input} from 'reactstrap';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Camiseta({
     camiseta,
     allProducts,
-	setAllProducts,
-	countProducts,
-	setCountProducts,
+    setAllProducts,
+    countProducts,
+    setCountProducts,
     total,
-    setTotal,
-    talle,
-    setTalle,
-    mensajeTalle,
-    setMensajeTalle
+    setTotal
 }) {
-
     let id,imagen,descripcion,precio,talles; 
 
     const [key, setKey] = useState(0);
+    const [talle, setTalle] = useState(null);
+    const [mensajeTalle, setMensajeTalle] = useState("Selecciona un talle");
 
     //al iniciar la pagina carga en key lo que esta en el key de localStorage
     useEffect(() => {
@@ -35,7 +33,6 @@ export default function Camiseta({
         localStorage.setItem('key', Number(key));
         }, [key]);
     
-
     if(camiseta != null){
         id = camiseta.id_camiseta;
         descripcion = camiseta.descripcion;
@@ -46,7 +43,6 @@ export default function Camiseta({
     const cambioTalle=e=>{
         setTalle(e.target.value);
         setMensajeTalle("Talle seleccionado: "+e.target.value);
-        
     }
 
     function agregarAlCarrito() {

@@ -56,7 +56,6 @@ const styles = {
   },
   fecha: {
     fontSize: "0.9em",
-    color: "#999",
   },
   noPedidosContainer: {
     display: "flex",
@@ -67,6 +66,5 @@ const styles = {
   noPedidosMessage: {
     fontSize: "1.5em",
     fontWeight: "bold",
-    color: "#999",
   },
 };

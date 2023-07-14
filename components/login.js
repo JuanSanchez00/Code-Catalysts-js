@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { login} from "../data/api";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Login({
-    setVisibilidadLogin,
-    setVisibilidadRegister,
-    setVisibilidadCamisetas,
-    setVisibilidadFiltrarLiga,
-    setTitulo,
-    setVisibilidadIniciarSesion,
-    setVisibilidadCerrarSesion,
-    todasLasCamisetas,
-    setCamisetasVisibles
-}) {  
+export default function Login() {  
     const [email, setEmail] = useState(null);
     const [contraseña, setContraseña] = useState(null);
+    const router = useRouter();
 
     const handleClickIniciarSesion = async () => {
         if (email == null) {
@@ -25,28 +18,19 @@ export default function Login({
             if (contraseña == null) {
               alert("Por favor ingrese su contraseña.");
             } else {
-              
               try {
                 const validacion = await login(email, contraseña);
-      
                 if (validacion.login) {
                   alert("Ha iniciado sesión correctamente como " + email);
                   localStorage.setItem("usuario", email);
                   localStorage.setItem("token", validacion.token);
-      
-                  setVisibilidadLogin("none");
-                  setVisibilidadCamisetas("block");
-                  setVisibilidadFiltrarLiga("block");
-                  setTitulo("Todas las camisetas");
-                  setVisibilidadIniciarSesion("none");
-                  setVisibilidadCerrarSesion("block");
-                  setCamisetasVisibles(todasLasCamisetas);
+                  router.back().back();
                 } else {
-                  alert("Credenciales inválidas");
+                  alert("Credenciales inválidas.");
                 }
               } catch (error) {
-                console.error("Ocurrió un error en la solicitud:", error);
-                alert("Error al iniciar sesión");
+                /*console.error("Ocurrió un error en la solicitud:", error);
+                alert("Error al iniciar sesión.");*/
               }
             }
           } else {
@@ -56,12 +40,7 @@ export default function Login({
         setEmail(null);
         setContraseña(null);
     };
-
-    const handleClickRegistrarse = () => {
-        setVisibilidadLogin("none");
-        setTitulo("Registrarse");
-        setVisibilidadRegister("block");
-    }
+    
     return ( 
         <div>
             <form className="formulario">
@@ -77,7 +56,7 @@ export default function Login({
             </form>
             <div class="text-center">
                 <p>¿No tienes un usuario?</p>
-                <button type="button" class="btn btn-primary btn-block mb-4" onClick={handleClickRegistrarse}>Registrate</button>
+                <Link type="button" class="btn btn-primary btn-block mb-4" href="/register">Registrate</Link>
             </div>
         </div>
     );

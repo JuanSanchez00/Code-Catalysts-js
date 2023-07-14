@@ -1,24 +1,17 @@
 import { useState } from "react";
 
 export default function Header ({
-	allProducts,
-	setAllProducts,
-	countProducts,
-	setCountProducts,
+    titulo,
+    allProducts,
+    setAllProducts,
+    countProducts,
+    setCountProducts,
     total,
     setTotal,
-    titulo,
-    visibilidadTitulo,
-    setVisibilidadMercadoPago,
-    setVisibilidadCamisetaActual,
-    setVisibilidadCamisetas,
-    setVisibilidadFiltrarLiga,
-    setVisibilidadFiltrarEquipo,
-    setTitulo,
-    setVisibilidadCarrito,
-    setVisibilidadChatGPT,
-    setRespuestaChatGPT
+    setVisibilidadContenido,
+    setVisibilidadMercadoPago
 }) {    
+
     const [active, setActive] = useState(false);
     
     const eliminarCamiseta = product => {
@@ -43,30 +36,14 @@ export default function Header ({
             alert("Antes de finalizar la compra debe iniciar sesion.");
         }
         else {
-            // Mostrar solo mp
-            setVisibilidadMercadoPago("block")
-            setVisibilidadCamisetaActual("none");
-            setVisibilidadCamisetas("none");
-            setVisibilidadFiltrarLiga("none");
-            setTitulo("");
-            setVisibilidadFiltrarEquipo("none");
-            setVisibilidadCarrito("none");
-            setVisibilidadChatGPT("none");
-            setRespuestaChatGPT('');
-            /*const pedido = await registrarPedido(json,usuario,token);
-            if (pedido == null) {
-                alert("Ocurrió un error al finalizar la compra.")
-            }
-            else {
-                vaciarCarrito();
-                alert("Su compra se ha realizado con éxito.");
-            }*/
+            setVisibilidadContenido("none");
+            setVisibilidadMercadoPago("block");
         }
 	};
 
     return (
         <header>
-            <h1 className="titulo" style={{ display: visibilidadTitulo }}> {titulo} </h1>
+            <h1 className="titulo"> {titulo} </h1>
             <div className='container-icon'>
                 <div
                     className='container-cart-icon'

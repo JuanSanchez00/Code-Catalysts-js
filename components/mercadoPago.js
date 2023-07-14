@@ -1,18 +1,15 @@
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
 import { registrarPedido } from "../data/api";
 
-export default function MercadoPago({total,
-                                    setVisibilidadMercadoPago,
-                                    setVisibilidadCamisetas,
-                                    setVisibilidadFiltrarLiga,
-                                    setTitulo,
-                                    setVisibilidadCarrito,
-                                    allProducts,
-                                    setAllProducts,
-                                    setTotal,
-                                    setCountProducts,
-                                    setVisibilidadAtrasEquipo,
-                                    setVisibilidadAtrasLiga}) {
+export default function MercadoPago({
+    total,
+    setVisibilidadMercadoPago,
+    setVisibilidadContenido,
+    allProducts,
+    setAllProducts,
+    setTotal,
+    setCountProducts
+}) {
     initMercadoPago('TEST-d9fbc7c1-c76a-4e0a-bcd0-2a74330f9401');
     const initialization = {
         amount: total
@@ -41,8 +38,6 @@ export default function MercadoPago({total,
     }
 
     const onSubmit = async (formData) => {
-    // callback llamado al hacer clic en el botón enviar datos
-    // console.log(JSON.stringify(formData));
     return new Promise((resolve, reject) => {
         fetch("https://garcia-sanchez-laravel-genaro08.vercel.app/rest/process_payment", {
             method: "POST",
@@ -54,22 +49,14 @@ export default function MercadoPago({total,
         .then((response) => response.json())
         .then((response) => {
             if(response.status !== null && response.status == "approved"){
-                alert("El pago se realizo correctamente");
-                // hacer el pedido
+                alert("El pago se realizó correctamente.");
                 guardarPedido();
-                // Vaciar carrito
                 vaciarCarrito();
             }else{
                 alert("El pago no pudo realizarse, intentelo mas tarde");
             }
-            // ocultar mp
+            setVisibilidadContenido("block");
             setVisibilidadMercadoPago("none");
-            setVisibilidadCamisetas("block");
-            setVisibilidadFiltrarLiga("block");
-            setTitulo("Todas las camisetas");
-            setVisibilidadCarrito("block");
-            setVisibilidadAtrasEquipo("none");
-            setVisibilidadAtrasLiga("none");
         })
         .catch((error) => {
             console.log("ERROR: "+error);

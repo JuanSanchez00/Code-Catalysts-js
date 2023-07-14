@@ -1,19 +1,11 @@
 import { useState } from "react";
 import { register } from "../data/api";
+import { useRouter } from 'next/router';
 
-export default function Register({
-    setVisibilidadLogin,
-    setVisibilidadRegister,
-    setVisibilidadCamisetas,
-    setVisibilidadFiltrarLiga,
-    setTitulo,
-    setVisibilidadIniciarSesion,
-    setVisibilidadCerrarSesion,
-    todasLasCamisetas,
-    setCamisetasVisibles
-}) {  
+export default function Register() {  
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('');
+    const router = useRouter();
 
     const handleClickRegistrarse = async () => {
         if (email === '') {
@@ -28,19 +20,12 @@ export default function Register({
               try {
                 const validacion = await register(email, contraseña);
                 if (validacion.registro) {
-                  alert("Usuario registrado correctamente");
+                  alert("Usuario registrado correctamente.");
                   localStorage.setItem("usuario", email);
                   localStorage.setItem("token", validacion.token);
                   setContraseña('');
                   setEmail('');
-                  setVisibilidadLogin("none");
-                  setVisibilidadIniciarSesion("none");
-                  setVisibilidadCamisetas("block");
-                  setVisibilidadFiltrarLiga("block");
-                  setTitulo("Todas las camisetas");
-                  setVisibilidadRegister("none");
-                  setVisibilidadCerrarSesion("block");
-                  setCamisetasVisibles(todasLasCamisetas);
+                  router.push('/');
                 } else {
                   alert("Hay un error en las credenciales.");
                 }

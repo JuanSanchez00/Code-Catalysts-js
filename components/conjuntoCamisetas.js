@@ -1,39 +1,11 @@
 import React from 'react';
 import Camiseta from '../components/camiseta';
+import Link from 'next/link';
 
 const ConjuntoCamisetas = ({
-    camisetas,
-    setCamisetaActual,
-    setVisibilidadCamisetas,
-    setVisibilidadFiltrarEquipo,
-    setVisibilidadFiltrarLiga,
-    setVisibilidadCamisetaActual,
-    setTitulo,
-    setVisibilidadAtrasLiga,
-    setVisibilidadAtrasEquipo,
-    setTituloLiga,
-    setTituloEquipo,
-    setIdLiga,
-    setIdEquipo,
-    setVisibilidadChatGPT
+    camisetas
 }) => {
-  
-  async function handleClickCambiarCamiseta (camiseta){
-    setVisibilidadCamisetas("none");
-    setVisibilidadFiltrarEquipo("none");
-    setVisibilidadFiltrarLiga("none");
-    setVisibilidadCamisetaActual("block");
-    setCamisetaActual(camiseta);
-    setTitulo("Comprar camiseta");
-    setVisibilidadAtrasLiga("block")
-    setVisibilidadAtrasEquipo("block");
-    setTituloLiga(camiseta.liga);
-    setTituloEquipo(camiseta.equipo);
-    setIdLiga(camiseta.id_liga);
-    setIdEquipo(camiseta.id_equipo);
-    setVisibilidadChatGPT("none");
-  }
-  
+
   if (camisetas != null) {
     return (
       <div className="d-flex justify-content-center align-items-center">
@@ -43,14 +15,14 @@ const ConjuntoCamisetas = ({
           ) : (
             <div>
               {camisetas.map((camiseta) => (
-                <a onClick={() => handleClickCambiarCamiseta(camiseta)} >
+                <Link href={"/camiseta/"+camiseta.id_camiseta} >
                   <Camiseta 
                     descripcion={camiseta.descripcion}
                     precio={camiseta.precio}
                     imagen={camiseta.imagen}
 
                   />
-                </a>
+                </Link>
               ))}
             </div>
           )}
