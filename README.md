@@ -30,11 +30,6 @@ Se utilizó localStorage para permitir que al recargar la página se mantenga la
 Los usuarios pueden abonar los pagos de sus pedidos a través de Mercado Pago.
 Para esto integramos [Checkout Bricks - Card Payment Brick](https://www.mercadopago.com.ar/developers/es/docs/checkout-bricks/card-payment-brick/introduction).
 
-#### Administración de archivos
-Las imágenes de las camisetas en venta son almacenadas en la base de datos del servidor.
-
-Para realizarlo utilizamos el esquema de codificación Base64.
-
 #### ChatGPT
 Decidimos consumir la API de ChatGPT para mostrarles a los usuarios información sobre las ligas y equipos, a medida que van realizando los filtros sobre las camisetas.
 
@@ -46,4 +41,7 @@ La página web cumple con al menos estas guías de accesibilidad de la W3C:
 - Texto a voz
 
 #### PWA
-COMPLETAR
+Convertimos la página web en PWA, por lo que puede ser instalada en computadoras y celulares.
+
+#### Responsive
+El diseño de la página se adapta a todo tipo de dispositivos, para que todos los usuarios puedan tener una correcta visualización de la misma.
