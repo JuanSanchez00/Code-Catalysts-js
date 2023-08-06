@@ -2,7 +2,7 @@
 
 Aplicación web destinada a la venta de camisetas de fútbol.
 
-- LINK: https://lacamisetanosemancha-genaro08.vercel.app/
+- LINK: https://lacamisetanosemancha-juansanchez00.vercel.app/
 
 ### Características
 
