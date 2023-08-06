@@ -76,7 +76,6 @@ export default function MostrarPedidos() {
     useEffect(() => {
         //funcion creada para que getMisPedidos este dentro de una funcion async
         const fetchData = async () => {
-            console.log("llega");
             email = localStorage.getItem('usuario');
             if (email != null) {
                 setVisibilidadPedidos("block");

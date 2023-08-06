@@ -17,7 +17,6 @@ export default function NavBar({
 
   useEffect(() => {
     usuario = localStorage.getItem('usuario');
-    console.log("Usuario: "+usuario);
   }, []);
 
   useEffect(() => {
@@ -58,6 +57,7 @@ export default function NavBar({
         src="https://i.ibb.co/7WBsHrf/Logo.png"
         width={40}
         height={40}
+        alt={'Logo'}
       />
       </div>
       <Link class="navbar-brand" id="tituloNav" href="/">La Camiseta No Se Mancha</Link>

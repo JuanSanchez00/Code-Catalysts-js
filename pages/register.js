@@ -97,7 +97,7 @@ export default function Registrar() {
                 total={total}
                 setTotal={setTotal}
             />
-            <div style={{ display: visibilidadRegister}}>
+            <div className="formularioLogin" style={{ display: visibilidadRegister}}>
                 <Register/>
             </div>
             <div style={styles.contenedorMensajeRegister}>

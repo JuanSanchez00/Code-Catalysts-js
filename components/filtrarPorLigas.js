@@ -8,7 +8,7 @@ export default function FiltrarPorLigas({
       <h4>Filtrar por ligas</h4>
       {ligas.map((liga) => (
         <Link className="items" href={"camisetas/liga/"+liga.id_liga}>
-          <p onClick={() => handleClickLigas(liga)}> {liga.nombre} </p>
+          <p> {liga.nombre} </p>
         </Link>
       ))}
     </div>

@@ -1,3 +1,7 @@
+.formularioLogin {
+	min-height: 75vh;
+}
+
 .contenedorBody {
 	flex-direction: column;
 	min-height: 83vh;

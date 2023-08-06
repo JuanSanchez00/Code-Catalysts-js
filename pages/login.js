@@ -97,7 +97,7 @@ export default function IniciarSesion() {
                 total={total}
                 setTotal={setTotal}
             />
-            <div style={{ display: visibilidadLogin}}>
+            <div className="formularioLogin" style={{ display: visibilidadLogin}}>
                 <Login/>
             </div>
             <div className="contenedorMensajeLogin" style={styles.contenedorMensajeLogin}>
