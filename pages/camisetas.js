@@ -8,6 +8,7 @@ import Footer from '../components/footer';
 import { getCamisetas } from "../data/api";
 import { getLigas } from "../data/api";
 import { useState, useEffect } from "react";
+import Error404 from '../components/error404';
 
 export default function Camisetas({camisetas,ligas}) {
 
@@ -47,61 +48,76 @@ export default function Camisetas({camisetas,ligas}) {
         localStorage.setItem('carrito', JSON.stringify(allProducts));
     }, [allProducts]);
 
-    return (
-        <div>
-            <Head>
-                <title>Camisetas</title>
-                <link rel="icon" href="https://i.ibb.co/7WBsHrf/Logo.png" />
-                <script  src="/regist_serviceWorker.js"></script> 
-                <link rel="manifest" href="/manifest.json" />
-            </Head>
-            <NavBar
-                setAllProducts={setAllProducts}
-                setCountProducts={setCountProducts}
-                setTotal={setTotal}
-            />
-            <div style={{ display: visibilidadContenido}}>
-                <Header 
-                    titulo={"Todas las camisetas"}
-                    allProducts={allProducts}
+    if(camisetas != null && ligas != null){
+        return (
+            <div>
+                <Head>
+                    <title>Camisetas</title>
+                    <link rel="icon" href="https://i.ibb.co/7WBsHrf/Logo.png" />
+                    <script  src="/regist_serviceWorker.js"></script> 
+                    <link rel="manifest" href="/manifest.json" />
+                </Head>
+                <NavBar
                     setAllProducts={setAllProducts}
-                    countProducts={countProducts}
                     setCountProducts={setCountProducts}
-                    total={total}
                     setTotal={setTotal}
-                    setVisibilidadContenido={setVisibilidadContenido}
-                    setVisibilidadMercadoPago={setVisibilidadMercadoPago}
                 />
-                <FiltrarPorLigas
-                    ligas={ligas}
-                />
-                <ConjuntoCamisetas 
-                    camisetas={camisetas}
-                />
+                <div style={{ display: visibilidadContenido}}>
+                    <Header 
+                        titulo={"Todas las camisetas"}
+                        allProducts={allProducts}
+                        setAllProducts={setAllProducts}
+                        countProducts={countProducts}
+                        setCountProducts={setCountProducts}
+                        total={total}
+                        setTotal={setTotal}
+                        setVisibilidadContenido={setVisibilidadContenido}
+                        setVisibilidadMercadoPago={setVisibilidadMercadoPago}
+                    />
+                    <FiltrarPorLigas
+                        ligas={ligas}
+                    />
+                    <ConjuntoCamisetas 
+                        camisetas={camisetas}
+                    />
+                </div>
+                <div className='contenedorGeneral' style={{ display: visibilidadMercadoPago}}>
+                    <MercadoPago
+                        total={total}
+                        setVisibilidadMercadoPago={setVisibilidadMercadoPago}
+                        setVisibilidadContenido={setVisibilidadContenido}
+                        allProducts={allProducts}
+                        setAllProducts={setAllProducts}
+                        setTotal={setTotal}
+                        setCountProducts={setCountProducts}
+                    />
+                </div>
+                <Footer/>
             </div>
-            <div className='contenedorGeneral' style={{ display: visibilidadMercadoPago}}>
-                <MercadoPago
-                    total={total}
-                    setVisibilidadMercadoPago={setVisibilidadMercadoPago}
-                    setVisibilidadContenido={setVisibilidadContenido}
-                    allProducts={allProducts}
-                    setAllProducts={setAllProducts}
-                    setTotal={setTotal}
-                    setCountProducts={setCountProducts}
-                />
-            </div>
-            <Footer/>
-        </div>
-    );
+        );
+    }else{
+        return <Error404/>;
+    }
 }
 
 export async function getServerSideProps() {
-    let camisetas = await getCamisetas();
-    let ligas = await getLigas();
-    return {
-      props: {
-        camisetas,
-        ligas,
-      },
-    };
+    try{
+        let camisetas = await getCamisetas();
+        let ligas = await getLigas();
+        return {
+        props: {
+            camisetas,
+            ligas,
+        },
+        };
+    }catch(error){
+        let camisetas = null;
+        let ligas = null;
+        return{
+            props: {
+                camisetas,
+                ligas,
+            },
+        };
+    }
   }
