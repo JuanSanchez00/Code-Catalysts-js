@@ -4,6 +4,13 @@ const CACHE_NAME = 'WebDeveloper',
   urlsToCache = [
     './',
     './index.js',
+
+    '../pages/index.js',
+    '../pages/camisetas.js',
+    '../pages/login.js',
+    '../pages/pedidos.js',
+    '../pages/register.js',
+
     '../styles/globals.css',
     '../styles/Home.module.css',
     '../styles/utils.module.css',
