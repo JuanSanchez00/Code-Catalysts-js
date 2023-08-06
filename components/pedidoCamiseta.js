@@ -81,9 +81,9 @@ export default function Camiseta({
                     <h2 className={styles.descripcion}>{descripcion}</h2>
                     <h2 className={styles.precio}>${precio}</h2>
                     <FormGroup>
-                        <h4>
+                        <h3 className="tituloFiltrar">
                             {mensajeTalle}
-                        </h4>
+                        </h3>
                         <FormGroup className={styles.formGroupRadios}>
                             {talles.map((talle,index) => (
                                 <FormGroup>

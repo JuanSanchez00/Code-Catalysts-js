@@ -7,7 +7,7 @@ export default function Index({
     return (
       <div>
         <div className="contenedorFiltrar">
-          <h4>Filtrar por equipos</h4>
+          <h2 className="tituloFiltrar">Filtrar por equipos</h2>
           {equipos !== null &&
             equipos.map((equipo) => (
               <Link className="items" href={"/camisetas/equipo/"+equipo.id_equipo}>

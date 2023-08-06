@@ -5,7 +5,7 @@ export default function FiltrarPorLigas({
 }) {
   return (
     <div className="contenedorFiltrar">
-      <h4>Filtrar por ligas</h4>
+      <h2 className="tituloFiltrar">Filtrar por ligas</h2>
       {ligas.map((liga) => (
         <Link className="items" href={"camisetas/liga/"+liga.id_liga}>
           <p> {liga.nombre} </p>
