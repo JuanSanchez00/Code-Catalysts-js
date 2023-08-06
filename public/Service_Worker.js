@@ -11,6 +11,16 @@ const CACHE_NAME = 'WebDeveloper',
     '../pages/pedidos.js',
     '../pages/register.js',
 
+    '/',
+    '/index.js',
+    '/login',
+    '/login.js',
+    '/register',
+    '/register.js',
+    '/camisetas',
+    '/camisetas.js',
+
+
     '../styles/globals.css',
     '../styles/Home.module.css',
     '../styles/utils.module.css',
