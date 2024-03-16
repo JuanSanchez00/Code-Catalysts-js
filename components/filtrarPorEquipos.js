@@ -1,31 +1,22 @@
-import { getCamisetasPorEquipo} from "../data/api";
+import Link from 'next/link';
 
 export default function Index({
   equipos, 
-  setCamisetasVisibles, 
-  setVisibilidadFiltrarEquipo, 
-  setTitulo
 }) {
-  
-  async function handleClickEquipos (equipo){
-    let camisetas = await getCamisetasPorEquipo(equipo.id_equipo);
-    setCamisetasVisibles(camisetas); 
-    setVisibilidadFiltrarEquipo("none");
-    setTitulo("Camisetas de "+equipo.nombre);
-  }
-
-  return (
-    <div>
-      <div className="contenedorFiltrar">
-        <h4>Filtrar por equipos</h4>
-        {equipos !== null &&
-          equipos.map((equipo) => (
-            <a className="items">
-              <p onClick={() => handleClickEquipos(equipo)}> {equipo.nombre} </p>
-            </a>
-          ))}
+  if (equipos.length > 0) {
+    return (
+      <div>
+        <div className="contenedorFiltrar">
+          <h2 className="tituloFiltrar">Filtrar por equipos</h2>
+          {equipos !== null &&
+            equipos.map((equipo) => (
+              <Link className="items" href={"/camisetas/equipo/"+equipo.id_equipo}>
+                <p> {equipo.nombre} </p>
+              </Link>
+            ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 

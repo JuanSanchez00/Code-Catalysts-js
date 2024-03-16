@@ -1,1 +1,43 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+    "version": 2,
+    "builds": [
+        {
+          "src": "next.config.js",
+          "use": "@vercel/next"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/index.js"
+        },
+        {
+            "src": "/login",
+            "dest": "/login.js"
+        },
+        {
+            "src": "/register",
+            "dest": "/register.js"
+        },
+        {
+            "src": "/pedidos",
+            "dest": "/pedidos.js"
+        },
+        {
+            "src": "/camisetas",
+            "dest": "/camisetas.js"
+        },
+        {
+            "src": "/camisetas/equipo/:id",
+            "dest": "/camisetas/equipo/[id].js"
+        },
+        {
+            "src": "/camisetas/liga/:id",
+            "dest": "/camisetas/liga/[id].js"
+        },
+        {
+            "src": "/camiseta/:id",
+            "dest": "/camiseta/[id].js"
+        }
+    ]
+  }
